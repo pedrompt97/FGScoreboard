@@ -1,0 +1,25 @@
+HOW TO USE THIS WITH OBS/XSPLIT
+
+1. Unzip to wherever (doesn't matter).
+
+2. Open StreamControl
+
+3. In StreamControl, click on Settings (the gear icon), the click on Configuration
+
+4. For the XML/JSON Path, click Browse and select the "Overlay" folder.
+
+5. For Layout File, click on Browse, go to the Overlay folder, and select "layout.xml"
+
+6. Leave everything else as it is, then click on Ok.
+
+7. In OBS or Xsplit, drag the "ScoreBoard-jstween.html" file into your scene.
+
+8. Go to the Properties of ScoreBoard-jstween.html in OBS and Xsplit and make sure the resolution is set to 1920 x 1080.*
+
+9. Repeat steps 7 and 8 for "Commentators.html"
+
+
+
+
+*These files are designed for 1920x1080 broadcasts, while OBS will automatically adjust the scene when you manually resize it, 
+Xsplit for some reason will not, and you'll have to manually adjust the zoom to compensate

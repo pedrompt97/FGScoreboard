@@ -1,0 +1,104 @@
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family:  Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+#board {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1920px;
+	height:200px;
+	background-image:url('../images/game.png');
+}
+
+#pName1 {
+	position:absolute;
+	left:425px;
+	width:330px;
+	height:41px;
+	font-size:30px;
+	text-align:center;
+	vertical-align: middle;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}
+#pName2 {
+	position:absolute;
+	left:1169px;
+	width:330px;
+	height:41px;
+	font-size:30px;
+	text-align:center;
+	vertical-align: middle;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}
+#pScore1 {
+	position:absolute;
+	left:795px;
+	top:4px;
+	width:47px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:36px;
+	text-align:center;
+	text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; 
+}
+#pScore2 {
+	position:absolute;
+	left:1077px;
+	top:4px;
+	width:47px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:36px;
+	text-align:center;
+	text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; 
+}
+
+#pFlag1 {
+	position:absolute;
+	width: 158px;
+	height: 60px;
+	left:252.5px;
+	top: -7px;
+	text-align:center;
+	opacity: 0;
+	-webkit-mask-image: url("../images/flag_mask/flag_mask_1.png");
+	-webkit-mask-size: 100%;
+}
+
+#pFlag2 {
+	position:absolute;
+	width: 158px;
+	height: 49px;
+	left:1565px;
+	top:7px;
+}
+
+#mText3 {
+	color: #FFF;
+	position: absolute;
+	left: 877px;
+	top: 1px;
+	width: 169px;
+	height: 32px;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: center;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}

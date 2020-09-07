@@ -1,0 +1,47 @@
+<!DOCTYPE StreamControlLayout>
+<layout width="400" height="210" tabbed="1">
+<tab name="Scoreboard">
+  <lineEdit id="pName1" x="10" y="10" width="160" height="20" dataSet="players.csv" >Player 1</lineEdit>
+  <lineEdit id="pCountry1" x="180" y="10" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
+  <lineEdit id="pName2" x="10" y="40" width="160" height="20" dataSet="players.csv" >Player 2</lineEdit>
+  <lineEdit id="pCountry2" x="180" y="40" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
+  <spinBox id="pScore1" x="240" y="10" width="50" height="22" maximum="999" />
+  <spinBox id="pScore2" x="240" y="40" width="50" height="22" maximum="999" />
+  <button type="reset" x="300" y="10" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1">Clear</button>
+  <button type="reset" x="340" y="10" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
+  <button type="reset" x="300" y="40" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2">Clear</button>
+  <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
+  <label x="10" y="75" width="46" height="13">Label</label>
+  <comboBox id="mText3" x="65" y="70" width="316" height="22">	
+	<comboItem> </comboItem>
+	<comboItem>Casuals</comboItem>
+	<comboItem>Exhibition</comboItem>
+	<comboItem>Exhibition</comboItem>
+	<comboItem>Exhibition FT5</comboItem>
+	<comboItem>Exhibition FT10</comboItem>
+	<comboItem>Tournament</comboItem>
+	<comboItem>Pools</comboItem>
+	<comboItem>Winners Bracket</comboItem>
+	<comboItem>Losers Bracket</comboItem>
+	<comboItem>Top 8 Winners</comboItem>
+	<comboItem>Top 8 Losers</comboItem>
+	<comboItem>Top 8</comboItem>
+	<comboItem>Winners Final</comboItem>
+	<comboItem>Losers Semis</comboItem>
+	<comboItem>Losers Final</comboItem>
+	<comboItem>Grand Finals</comboItem>
+	<comboItem>Grand Finals (Reset)</comboItem>
+  </comboBox>
+</tab>
+<tab name="Commentators">
+  <label x="10" y="15" width="48" height="13">Caster 1</label>
+  <label x="10" y="75" width="48" height="13">Caster 2</label>
+  <lineEdit id="mText2" x="65" y="10" width="260" height="22" dataSet="casters.csv">Commentator 1</lineEdit>
+  <lineEdit id="mText5" x="65" y="40" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText2">Twitter</lineEdit>
+  <lineEdit id="mText1" x="65" y="70" width="260" height="22" dataSet="casters.csv">Commentator 2</lineEdit>
+  <lineEdit id="mText4" x="65" y="100" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText1">Twitter</lineEdit>
+  <button type="reset" x="340" y="70" width="40" height="23" tooltip="Clear Commentator 2 fields" id="clear3" reset="mText1,mText4">Clear</button>
+  <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Casters" id="swap2" swapSet1="mText1,mText4" swapSet2="mText2,mText5">Swap</button>
+  <button type="reset" x="340" y="10" width="40" height="23" tooltip="Clear Commentator 1 fields" id="clear4" reset="mText2,mText5">Clear</button>
+</tab>
+</layout>

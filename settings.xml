@@ -1,0 +1,8 @@
+<!DOCTYPE StreamControl>
+<settings>
+ <outputPath><![CDATA[C:\TekkenPTlayouts\Scoreboard\Overlay\]]></outputPath>
+ <layoutPath><![CDATA[C:\TekkenPTlayouts\Scoreboard\Overlay\layout.xml]]></layoutPath>
+ <useCDATA>0</useCDATA>
+ <format>1</format>
+ <altHotkeyHandling>0</altHotkeyHandling>
+</settings>

@@ -1,0 +1,85 @@
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+#board {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1920px;
+	height:1080px;
+	background-image:url(../images/lt2l.png);
+}
+
+#mText1 {
+	color: #fff;
+	position:absolute;
+	left:100px;
+	top:944px;
+	width:570px;
+	height:57px;
+	font-size:40px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:right;
+	overflow:visible;
+		font-weight:600;
+		font-style:italic;
+	text-shadow: 
+	    3px 3px #000,
+		3px 3px #000;
+}
+#mText2 {
+	color: #fff;
+	overflow:visible;
+	position: absolute;
+	left: 1245px;
+	top: 944px;
+	height: 57px;
+	width: 570px;
+	font-size: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+		font-weight:600;
+		font-style:italic; 
+	text-shadow: 
+	    3px 3px #000,
+		3px 3px #000;
+}
+
+#mText4 {
+	color: #fff;
+	position:absolute;
+	left:120px;
+	top:1000px;
+	width:570px;
+	height:57px;
+	font-size:26px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:right;
+	overflow:visible;
+		font-weight:600;
+		font-style:italic;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000; 
+}
+#mText5 {
+	color: #fff;
+	overflow:visible;
+	position: absolute;
+	left: 1220px;
+	top: 1000px;
+	height: 57px;
+	width: 570px;
+	font-size: 26px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+		font-weight:600;
+		font-style:italic;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}

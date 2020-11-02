@@ -69,10 +69,9 @@ body {
 
 #pFlag1 {
 	position:absolute;
-	width: 158px;
 	height: 60px;
-	left:252.5px;
-	top: -7px;
+	left:254px;
+	top: -6px;
 	text-align:center;
 	opacity: 0;
 	-webkit-mask-image: url("../images/flag_mask/flag_mask_1.png");
@@ -81,10 +80,13 @@ body {
 
 #pFlag2 {
 	position:absolute;
-	width: 158px;
-	height: 49px;
-	left:1565px;
-	top:7px;
+	height: 60px;
+	left:1511px;
+	top:-6px;
+	text-align:center;
+	opacity: 0;
+	-webkit-mask-image: url("../images/flag_mask/flag_mask_2.png");
+	-webkit-mask-size: 100%;
 }
 
 #mText3 {

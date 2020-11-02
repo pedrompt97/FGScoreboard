@@ -33,10 +33,10 @@
 					pollHandler();
 				}, 500);
 			
-				<!--$('#pFlag1').opacity(0);-->
+				$('#pFlag1').opacity(0);
 				$('#pName1').html('');
 				$('#pScore1').html('');
-				<!--$('#pFlag2').opacity(0);-->
+				$('#pFlag2').opacity(0);
 				$('#pName2').html('');
 				$('#pScore2').html('');
 				$('#mText3').html('');
@@ -296,7 +296,7 @@
 						  effect: 'easeIn'
 						},
 						onStop: function(){
-							<!--$('#pFlag1').html('<img src="GoSquared/countries/'+ pCountry1 +'.png">');-->
+							$('#pFlag1').html('<img src="GoSquared/countries/'+ pCountry1 +'.png" height="60">');
 							oldCountry1 = pCountry1;
 						}
 					});
@@ -328,7 +328,7 @@
 						  effect: 'easeIn'
 						},
 						onStop: function(){
-							<!--$('#pFlag2').html('<img src="GoSquared/cropped/iso/64shiny/'+ pCountry2 +'.png" width="50" height="33">');-->
+							$('#pFlag2').html('<img src="GoSquared/countries/'+ pCountry2 +'.png" height="60">');
 							oldCountry2 = pCountry2;
 						}
 					});

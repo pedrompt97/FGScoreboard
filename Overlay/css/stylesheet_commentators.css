@@ -17,13 +17,15 @@ body {
 #mText1 {
 	color: #fff;
 	position:absolute;
-	left:100px;
-	top:944px;
-	width:570px;
-	height:57px;
+	left:158px;
+	top:901px;
+	width:514px;
+	height:67px;
+	line-height: 67px;
 	font-size:40px;
 	font-family: Arial, Helvetica, sans-serif;
-	text-align:right;
+	text-align:center;
+	vertical-align: middle;
 	overflow:visible;
 		font-weight:600;
 		font-style:italic;
@@ -35,13 +37,14 @@ body {
 	color: #fff;
 	overflow:visible;
 	position: absolute;
-	left: 1245px;
-	top: 944px;
-	height: 57px;
-	width: 570px;
+	left: 1250px;
+	top: 901px;
+	height: 67px;
+	line-height: 67px;
+	width: 514px;
 	font-size: 40px;
 	font-family: Arial, Helvetica, sans-serif;
-	text-align: left;
+	text-align: center;
 		font-weight:600;
 		font-style:italic; 
 	text-shadow: 
@@ -52,13 +55,14 @@ body {
 #mText4 {
 	color: #fff;
 	position:absolute;
-	left:120px;
-	top:1000px;
-	width:570px;
-	height:57px;
+	left:306px;
+	top:970px;
+	width:243px;
+	height:35px;
+	line-height: 35px;
 	font-size:26px;
 	font-family: Arial, Helvetica, sans-serif;
-	text-align:right;
+	text-align:center;
 	overflow:visible;
 		font-weight:600;
 		font-style:italic;
@@ -70,13 +74,14 @@ body {
 	color: #fff;
 	overflow:visible;
 	position: absolute;
-	left: 1220px;
-	top: 1000px;
-	height: 57px;
-	width: 570px;
+	left: 1375px;
+	top: 970px;
+	height: 35px;
+	line-height: 35px;
+	width: 243px;
 	font-size: 26px;
 	font-family: Arial, Helvetica, sans-serif;
-	text-align: left;
+	text-align: center;
 		font-weight:600;
 		font-style:italic;
 	text-shadow: 

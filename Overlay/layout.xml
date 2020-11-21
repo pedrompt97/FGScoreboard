@@ -1,20 +1,37 @@
 <!DOCTYPE StreamControlLayout>
-<layout width="400" height="210" tabbed="1">
+<layout width="480" height="200" tabbed="1">
 <tab name="Scoreboard">
-  <lineEdit id="pName1" x="10" y="10" width="160" height="20" dataSet="players.csv" >Player 1</lineEdit>
-  <lineEdit id="pCountry1" x="180" y="10" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
-  <lineEdit id="pName2" x="10" y="40" width="160" height="20" dataSet="players.csv" >Player 2</lineEdit>
-  <lineEdit id="pCountry2" x="180" y="40" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
-  <spinBox id="pScore1" x="240" y="10" width="50" height="22" maximum="999" />
-  <spinBox id="pScore2" x="240" y="40" width="50" height="22" maximum="999" />
-  <button type="reset" x="300" y="10" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1">Clear</button>
-  <button type="reset" x="340" y="10" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
-  <button type="reset" x="300" y="40" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2">Clear</button>
-  <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
-  <label x="10" y="75" width="46" height="13">Label</label>
-  <comboBox id="mText3" x="65" y="70" width="316" height="22">	
+  <lineEdit id="pName1" x="10" y="20" width="160" height="20" dataSet="players.csv" >Player 1</lineEdit>
+  <lineEdit id="pCountry1" x="180" y="20" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
+  <lineEdit id="pName2" x="10" y="60" width="160" height="20" dataSet="players.csv" >Player 2</lineEdit>
+  <lineEdit id="pCountry2" x="180" y="60" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
+  <spinBox id="pScore1" x="240" y="20" width="50" height="22" maximum="999" />
+  <spinBox id="pScore2" x="240" y="60" width="50" height="22" maximum="999" />
+  <label x="320" y="10" width="110" height="12">Deaths</label>
+  <label x="320" y="50" width="110" height="12">Deaths</label>
+  <checkBox id="pImg1" x="300" y="20" width="22" height="22" ></checkBox>
+  <checkBox id="pImg2" x="315" y="20" width="22" height="22" ></checkBox>
+  <checkBox id="pImg3" x="330" y="20" width="22" height="22" ></checkBox>
+  <checkBox id="pImg4" x="345" y="20" width="22" height="22" ></checkBox>
+  <checkBox id="pImg5" x="360" y="20" width="22" height="22" ></checkBox>
+  <checkBox id="pImg6" x="300" y="60" width="22" height="22" ></checkBox>
+  <checkBox id="pImg7" x="315" y="60" width="22" height="22" ></checkBox>
+  <checkBox id="pImg8" x="330" y="60" width="22" height="22" ></checkBox>
+  <checkBox id="pImg9" x="345" y="60" width="22" height="22" ></checkBox>
+  <checkBox id="pImg10" x="360" y="60" width="22" height="22" ></checkBox>
+  <button type="reset" x="380" y="20" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1,pImg1,pImg2,pImg3,pImg4,pImg5">Clear</button>
+  <button type="reset" x="420" y="20" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
+  <button type="reset" x="380" y="60" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2,pImg6,pImg7,pImg8,pImg9,pImg10">Clear</button>
+  <button type="swap" x="420" y="60" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
+  <label x="10" y="105" width="46" height="13">Label</label>
+  <comboBox id="mText3" x="65" y="100" width="316" height="22">	
 	<comboItem> </comboItem>
 	<comboItem>Casuals</comboItem>
+	<comboItem>Swiss (Round 1)</comboItem>
+	<comboItem>Swiss (Round 2)</comboItem>
+	<comboItem>Swiss (Round 3)</comboItem>
+	<comboItem>Swiss (Round 4)</comboItem>
+	<comboItem>Swiss (Round 5)</comboItem>
 	<comboItem>Exhibition</comboItem>
 	<comboItem>Exhibition FT5</comboItem>
 	<comboItem>Exhibition FT10</comboItem>

@@ -1,0 +1,449 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/stylesheet_lobby.css" type="text/css" charset="utf-8">
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.fittext.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/countries.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			
+			var timestampOld;
+			var timestamp;
+			var pName1;
+			var pScore1;
+			var pName2;
+			var pScore2;
+			var pCountry1;
+			var pCountry2;
+			var oldCountry1 = "";
+			var oldCountry2 = "";
+			var mText3;
+			
+			var xmlDoc;
+		
+			var xhr = new XMLHttpRequest();
+		
+			var animating = false;
+			var doUpdate = false;
+			
+			function init() {
+				xhr.overrideMimeType('text/xml');
+				
+				var timeout = this.window.setInterval(function() {
+					pollHandler();
+				}, 500);
+			
+				$('#pFlag1').opacity(0);
+				$('#pImg1').opacity(0);
+				$('#pImg2').opacity(0);
+				$('#pImg3').opacity(0);
+				$('#pImg4').opacity(0);
+				$('#pImg5').opacity(0);
+				$('#pImg6').opacity(0);
+				$('#pImg7').opacity(0);
+				$('#pImg8').opacity(0);
+				$('#pImg9').opacity(0);
+				$('#pImg10').opacity(0);
+				$('#pScore1').html('');
+				$('#pFlag2').opacity(0);
+				$('#pName2').html('');
+				$('#pScore2').html('');
+				$('#mText3').html('');
+				$('#board').tween({
+				   opacity: {
+					  start: 0,
+					  stop: 100,
+					  time: 0.5,
+					  duration: 0.5,
+					  effect: 'easeOut'
+					}
+				});
+				
+				
+				
+				$('#pImg1').tween({
+					left:{
+						  start: -200,
+						  stop: 0,
+						  units: 'px',
+						  time: 1.7,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg2').tween({
+					left:{
+						  start: -200,
+						  stop: 150,
+						  units: 'px',
+						  time: 1.4,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg3').tween({
+					left:{
+						  start: -200,
+						  stop: 300,
+						  units: 'px',
+						  time: 1.1,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg4').tween({
+					left:{
+						  start: -200,
+						  stop: 450,
+						  units: 'px',
+						  time: 0.8,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg5').tween({
+					left:{
+						  start: -200,
+						  stop: 600,
+						  units: 'px',
+						  time: 0.5,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg6').tween({
+					left:{
+						  start: 2120,
+						  stop: 1170,
+						  units: 'px',
+						  time: 0.5,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg7').tween({
+					left:{
+						  start: 2120,
+						  stop: 1320,
+						  units: 'px',
+						  time: 0.8,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg8').tween({
+					left:{
+						  start: 2120,
+						  stop: 1470,
+						  units: 'px',
+						  time: 1.1,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg9').tween({
+					left:{
+						  start: 2120,
+						  stop: 1620,
+						  units: 'px',
+						  time: 1.4,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('#pImg10').tween({
+					left:{
+						  start: 2120,
+						  stop: 1770,
+						  units: 'px',
+						  time: 1.7,
+						  duration: 2,
+						  effect:'easeOut'
+					}
+				});
+				
+				$('.pImg').tween({
+					opacity: {
+						start: 0,
+						stop: 100,
+						time: 0,
+						duration: 1,
+						effect: 'easeOut'
+					}
+				});
+				
+				$.play();
+			}
+			
+			function pollHandler()
+			{
+			  loadData();
+			  if (timestamp != timestampOld) {
+				  doUpdate = true;
+			  }
+			  if (!animating && doUpdate) {
+				  updateBoard();
+			  }
+			}
+			
+			function loadData() {
+				xhr.open('GET', 'streamcontrol.xml');
+				xhr.send();
+				xhr.onreadystatechange = function(){
+						xmlDoc = xhr.responseXML;
+						
+						pImg1 = getValueFromTag(xmlDoc,'pImg1');
+						pImg2 = getValueFromTag(xmlDoc,'pImg2');
+						pImg3 = getValueFromTag(xmlDoc,'pImg3');
+						pImg4 = getValueFromTag(xmlDoc,'pImg4');
+						pImg5 = getValueFromTag(xmlDoc,'pImg5');
+						pImg6 = getValueFromTag(xmlDoc,'pImg6');
+						pImg7 = getValueFromTag(xmlDoc,'pImg7');
+						pImg8 = getValueFromTag(xmlDoc,'pImg8');
+						pImg9 = getValueFromTag(xmlDoc,'pImg9');
+						pImg10 = getValueFromTag(xmlDoc,'pImg10');
+						pScore1 = getValueFromTag(xmlDoc,'pScore1');
+						pScore2 = getValueFromTag(xmlDoc,'pScore2');
+						pCountry1 = getCountry(getValueFromTag(xmlDoc,'pCountry1'));
+						pCountry2 = getCountry(getValueFromTag(xmlDoc,'pCountry2'));
+						mText3 = getValueFromTag(xmlDoc,'mText3');
+						timestampOld = timestamp;
+						timestamp = getValueFromTag(xmlDoc,'timestamp');
+						
+				}
+			}
+			
+			function updateBoard() {
+				var pWrap3 = $('#mText3');
+				
+				pImg1 == 1 ? $("#pImg1").addClass('death') : $("#pImg1").removeClass('death');
+				pImg2 == 1 ? $("#pImg2").addClass('death') : $("#pImg2").removeClass('death');
+				pImg3 == 1 ? $("#pImg3").addClass('death') : $("#pImg3").removeClass('death');
+				pImg4 == 1 ? $("#pImg4").addClass('death') : $("#pImg4").removeClass('death');
+				pImg5 == 1 ? $("#pImg5").addClass('death') : $("#pImg5").removeClass('death');
+				pImg6 == 1 ? $("#pImg6").addClass('death') : $("#pImg6").removeClass('death');
+				pImg7 == 1 ? $("#pImg7").addClass('death') : $("#pImg7").removeClass('death');
+				pImg8 == 1 ? $("#pImg8").addClass('death') : $("#pImg8").removeClass('death');
+				pImg9 == 1 ? $("#pImg9").addClass('death') : $("#pImg9").removeClass('death');
+				pImg10 == 1 ? $("#pImg10").addClass('death') : $("#pImg10").removeClass('death');
+				
+				
+				if ($('#pScore1').html() != pScore1) {
+					animating = true;
+					$('#pScore1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pScore1').html(pScore1);
+						}
+					});
+					
+
+					
+					$('#pScore1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#pScore2').html() != pScore2) {
+					animating = true;
+					$('#pScore2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pScore2').html(pScore2);
+						}
+					});
+					
+					$('#pScore2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#mText3').html() != mText3) {
+					animating = true;
+					$('#mText3').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#mText3').html(mText3);
+							pWrap3.each(function(i, pWrap3){
+								$(pWrap3).css('font-size', '30px');
+								while(pWrap3.scrollWidth > pWrap3.offsetWidth || pWrap3.scrollHeight > pWrap3.offsetHeight){
+									var newFontSize = (parseFloat($(pWrap3).css('font-size').slice(0,-2)) * .95) + 'px';
+									$(pWrap3).css('font-size', newFontSize);
+								}
+							});
+						}
+					});
+					
+					$('#mText3').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if (oldCountry1 != pCountry1 || $('#pFlag1').opacity() == 0) {
+					animating = true;
+					$('#pFlag1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pFlag1').html('<img src="GoSquared/countries/'+ pCountry1 +'.png" height="60">');
+							oldCountry1 = pCountry1;
+						}
+					});
+					
+					$('#pFlag1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				
+				}
+				
+				
+				if (oldCountry2 != pCountry2 || $('#pFlag2').opacity() == 0) {
+					animating = true;
+					$('#pFlag2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pFlag2').html('<img src="GoSquared/countries/'+ pCountry2 +'.png" height="60">');
+							oldCountry2 = pCountry2;
+						}
+					});
+					
+					$('#pFlag2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				
+				}
+					
+				$.play();
+				
+				doUpdate = false;
+			}
+			
+			function getValueFromTag (xmlDoc,tag) {
+				if (xmlDoc.getElementsByTagName(tag).length != 0 ) {
+					if (xmlDoc.getElementsByTagName(tag)[0].childNodes.length == 0) {
+							return '';
+						} else {
+							return xmlDoc.getElementsByTagName(tag)[0].childNodes[0].nodeValue;
+					}
+				} else {
+					return '';
+				}
+			}
+			
+			function getCountry (country) {
+			
+			var count = iso.findCountryByName(country);
+			if (!count)
+			count = iso.findCountryByCode(country);
+			if (!count) {
+			var count = new Array();
+			count['value'] = "unknown";
+			}
+			
+			return count['value'];
+		}
+	</script>
+</head>
+<body onLoad="init()">
+	<div id="board">
+		<div id="pFlag1"></div>
+		<span id="pImg1" class="pImg"></span>
+		<span id="pImg2" class="pImg"></span>
+		<span id="pImg3" class="pImg"></span>
+		<span id="pImg4" class="pImg"></span>
+		<span id="pImg5" class="pImg"></span>
+		<div id="pScore1">99</div>
+		<div id="pFlag2"></div>
+		<span id="pImg6" class="pImg"></span>
+		<span id="pImg7" class="pImg"></span>
+		<span id="pImg8" class="pImg"></span>
+		<span id="pImg9" class="pImg"></span>
+		<span id="pImg10" class="pImg"></span>
+		<div id="pScore2">99</div>
+		<div id="mText3">Test</div>
+	</div>
+</body>
+</html>

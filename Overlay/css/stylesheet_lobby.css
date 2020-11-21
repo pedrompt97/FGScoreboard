@@ -1,0 +1,163 @@
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family:  Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+}
+
+#board {
+	position:absolute;
+	top:0px;
+	left:0px;
+	opacity:0;
+	width:1920px;
+	height:200px;
+	background-image:url('../images/game_team.png');
+}
+
+.pImg{
+	position:absolute;
+	width:150px;
+	height:90px;
+	opacity:0;
+	text-align:center;
+	vertical-align: middle;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position: center bottom;
+	-webkit-transition: all 1s ease-in-out;
+}
+
+.death {
+	filter: grayscale(1);
+}
+
+#pImg1 {
+	left:-200px;
+	background-image:url('../images/team_renders/Smiley.png');
+}
+
+#pImg2 {
+	left:-200px;
+	background-image:url('../images/team_renders/Noodles.png');
+}
+
+#pImg3 {
+	left:-200px;
+	background-image:url('../images/team_renders/JuLio.png');
+}
+
+#pImg4 {
+	left:-200px;
+	background-image:url('../images/team_renders/FreeDom.png');
+}
+
+#pImg5 {
+	left:-200px;
+	background-image:url('../images/team_renders/Gon.png');
+}
+
+#pImg6 {
+	left:2120px;
+	background-image:url('../images/team_renders/Skill_iT.png');
+}
+
+#pImg7 {
+	left:2120px;
+	background-image:url('../images/team_renders/Ravioli.png');
+}
+
+#pImg8 {
+	left:2120px;
+	background-image:url('../images/team_renders/Virgil.png');
+}
+
+#pImg9 {
+	left:2120px;
+	background-image:url('../images/team_renders/Jose.png');
+}
+
+#pImg10 {
+	left:2120px;
+	background-image:url('../images/team_renders/Ze_Simao.png');
+}
+
+#pName2 {
+	position:absolute;
+	left:1169px;
+	width:330px;
+	height:41px;
+	font-size:30px;
+	text-align:center;
+	vertical-align: middle;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}
+#pScore1 {
+	position:absolute;
+	left:795px;
+	top:4px;
+	width:47px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:36px;
+	text-align:center;
+	text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; 
+}
+#pScore2 {
+	position:absolute;
+	left:1077px;
+	top:4px;
+	width:47px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:36px;
+	text-align:center;
+	text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; 
+}
+
+#pFlag1 {
+	position:absolute;
+	height: 60px;
+	left:254px;
+	top: -6px;
+	text-align:center;
+	opacity: 0;
+	-webkit-mask-image: url("../images/flag_mask/flag_mask_1.png");
+	-webkit-mask-size: 100%;
+}
+
+#pFlag2 {
+	position:absolute;
+	height: 60px;
+	left:1511px;
+	top:-6px;
+	text-align:center;
+	opacity: 0;
+	-webkit-mask-image: url("../images/flag_mask/flag_mask_2.png");
+	-webkit-mask-size: 100%;
+}
+
+#mText3 {
+	color: #FFF;
+	position: absolute;
+	left: 877px;
+	top: 1px;
+	width: 169px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: center;
+	text-shadow: 
+	    2px 2px #000,
+		2px 2px #000;
+}

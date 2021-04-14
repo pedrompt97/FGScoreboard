@@ -1,6 +1,16 @@
 <!DOCTYPE StreamControl>
 <items>
- <timestamp>1605984737</timestamp>
+ <timestamp>1618420578</timestamp>
+ <aImg1>0</aImg1>
+ <aImg10>0</aImg10>
+ <aImg2>0</aImg2>
+ <aImg3>0</aImg3>
+ <aImg4>0</aImg4>
+ <aImg5>0</aImg5>
+ <aImg6>0</aImg6>
+ <aImg7>0</aImg7>
+ <aImg8>0</aImg8>
+ <aImg9>0</aImg9>
  <mText1>Só Wolf</mText1>
  <mText2>Comentador 1</mText2>
  <mText3></mText3>
@@ -18,8 +28,10 @@
  <pImg7>0</pImg7>
  <pImg8>0</pImg8>
  <pImg9>0</pImg9>
- <pName1></pName1>
- <pName2></pName2>
+ <pName1>Jogador 1</pName1>
+ <pName2>Jogador 2</pName2>
  <pScore1>0</pScore1>
  <pScore2>0</pScore2>
+ <tScore1>0</tScore1>
+ <tScore2>0</tScore2>
 </items>

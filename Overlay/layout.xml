@@ -1,5 +1,5 @@
 <!DOCTYPE StreamControlLayout>
-<layout width="480" height="200" tabbed="1">
+<layout width="400" height="200" tabbed="1">
 <tab name="Scoreboard">
   <lineEdit id="pName1" x="10" y="20" width="160" height="20" dataSet="players.csv" >Player 1</lineEdit>
   <lineEdit id="pCountry1" x="180" y="20" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
@@ -7,48 +7,41 @@
   <lineEdit id="pCountry2" x="180" y="60" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
   <spinBox id="pScore1" x="240" y="20" width="50" height="22" maximum="999" />
   <spinBox id="pScore2" x="240" y="60" width="50" height="22" maximum="999" />
-  <label x="320" y="10" width="110" height="12">Deaths</label>
-  <label x="320" y="50" width="110" height="12">Deaths</label>
-  <checkBox id="pImg1" x="300" y="20" width="22" height="22" ></checkBox>
-  <checkBox id="pImg2" x="315" y="20" width="22" height="22" ></checkBox>
-  <checkBox id="pImg3" x="330" y="20" width="22" height="22" ></checkBox>
-  <checkBox id="pImg4" x="345" y="20" width="22" height="22" ></checkBox>
-  <checkBox id="pImg5" x="360" y="20" width="22" height="22" ></checkBox>
-  <checkBox id="pImg6" x="300" y="60" width="22" height="22" ></checkBox>
-  <checkBox id="pImg7" x="315" y="60" width="22" height="22" ></checkBox>
-  <checkBox id="pImg8" x="330" y="60" width="22" height="22" ></checkBox>
-  <checkBox id="pImg9" x="345" y="60" width="22" height="22" ></checkBox>
-  <checkBox id="pImg10" x="360" y="60" width="22" height="22" ></checkBox>
-  <button type="reset" x="380" y="20" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1,pImg1,pImg2,pImg3,pImg4,pImg5">Clear</button>
-  <button type="reset" x="420" y="20" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
-  <button type="reset" x="380" y="60" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2,pImg6,pImg7,pImg8,pImg9,pImg10">Clear</button>
-  <button type="swap" x="420" y="60" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
+  
+  <button type="reset" x="300" y="20" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1">Clear</button>
+  <button type="reset" x="340" y="20" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
+  <button type="reset" x="300" y="60" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2">Clear</button>
+  <button type="swap" x="340" y="60" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
+  
   <label x="10" y="105" width="46" height="13">Label</label>
-  <comboBox id="mText3" x="65" y="100" width="316" height="22">	
-	<comboItem> </comboItem>
-	<comboItem>Casuals</comboItem>
-	<comboItem>Swiss (Round 1)</comboItem>
-	<comboItem>Swiss (Round 2)</comboItem>
-	<comboItem>Swiss (Round 3)</comboItem>
-	<comboItem>Swiss (Round 4)</comboItem>
-	<comboItem>Swiss (Round 5)</comboItem>
-	<comboItem>Exhibition</comboItem>
-	<comboItem>Exhibition FT5</comboItem>
-	<comboItem>Exhibition FT10</comboItem>
-	<comboItem>Tournament</comboItem>
-	<comboItem>Pools</comboItem>
-	<comboItem>Winners Bracket</comboItem>
-	<comboItem>Losers Bracket</comboItem>
-	<comboItem>Top 8 Winners</comboItem>
-	<comboItem>Top 8 Losers</comboItem>
-	<comboItem>Top 8</comboItem>
-	<comboItem>Winners Final</comboItem>
-	<comboItem>Losers Semis</comboItem>
-	<comboItem>Losers Final</comboItem>
-	<comboItem>Grand Finals</comboItem>
-	<comboItem>Grand Finals (Reset)</comboItem>
-  </comboBox>
+  <comboBox id="mText3" x="65" y="100" width="316" height="22" editable="1">	
+		<comboItem> </comboItem>
+		<comboItem>Casuals</comboItem>
+		<comboItem>Swiss (Round 1)</comboItem>
+		<comboItem>Swiss (Round 2)</comboItem>
+		<comboItem>Swiss (Round 3)</comboItem>
+		<comboItem>Swiss (Round 4)</comboItem>
+		<comboItem>Swiss (Round 5)</comboItem>
+		<comboItem>Swiss (Round 6)</comboItem>
+		<comboItem>Swiss (Round 7)</comboItem>
+		<comboItem>Exhibition FT5</comboItem>
+		<comboItem>Exhibition FT10</comboItem>
+		<comboItem>Team Exhibition FT18</comboItem>
+		<comboItem>Winners Bracket</comboItem>
+		<comboItem>Losers Bracket</comboItem>
+		<comboItem>Top 8 Winners</comboItem>
+		<comboItem>Top 8 Losers</comboItem>
+		<comboItem>Top 8</comboItem>
+		<comboItem>Winners Final</comboItem>
+		<comboItem>Winners Semis</comboItem>	
+		<comboItem>Losers Semis</comboItem>
+		<comboItem>Losers Final</comboItem>
+		<comboItem>Grand Finals</comboItem>
+		<comboItem>Grand Finals (Reset)</comboItem>
+	</comboBox>
 </tab>
+
+
 <tab name="Commentators">
   <label x="10" y="15" width="48" height="13">Caster 1</label>
   <label x="10" y="75" width="48" height="13">Caster 2</label>
@@ -59,5 +52,68 @@
   <button type="reset" x="340" y="70" width="40" height="23" tooltip="Clear Commentator 2 fields" id="clear3" reset="mText1,mText4">Clear</button>
   <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Casters" id="swap2" swapSet1="mText1,mText4" swapSet2="mText2,mText5">Swap</button>
   <button type="reset" x="340" y="10" width="40" height="23" tooltip="Clear Commentator 1 fields" id="clear4" reset="mText2,mText5">Clear</button>
+</tab>
+
+<tab name="Team Players">
+	<label x="53" y="10" width="100" height="12">Active</label>
+	<label x="90" y="10" width="110" height="12">Deaths</label>
+	
+	<label x="10" y="23" width="100" height="12">Coxo</label>
+	<checkBox id="aImg1" x="60" y="20" width="20" height="20"></checkBox>
+	<checkBox id="pImg1" x="100" y="20" width="20" height="20"></checkBox>
+
+	<label x="10" y="38" width="100" height="12">Jondesu</label>
+	<checkBox id="aImg2" x="60" y="35" width="20" height="20"></checkBox>
+	<checkBox id="pImg2" x="100" y="35" width="20" height="20"></checkBox>
+	
+	<label x="10" y="53" width="100" height="12">Mike</label>
+	<checkBox id="aImg3" x="60" y="50" width="20" height="20"></checkBox>
+	<checkBox id="pImg3" x="100" y="50" width="20" height="20"></checkBox>
+	
+	<label x="10" y="68" width="100" height="12">Flake</label>
+	<checkBox id="aImg4" x="60" y="65" width="20" height="20"></checkBox>
+	<checkBox id="pImg4" x="100" y="65" width="20" height="20"></checkBox>
+	
+	<label x="10" y="83" width="100" height="12">Murteira</label>
+  <checkBox id="aImg5" x="60" y="80" width="20" height="20"></checkBox>
+	<checkBox id="pImg5" x="100" y="80" width="20" height="20"></checkBox>
+	
+	<label x="10" y="110" width="100" height="12">Score</label>
+	<spinBox id="tScore1" x="50" y="107" width="50" height="20" maximum="999" />
+	
+	<button type="reset" x="130" y="38" width="40" height="23" tooltip="Revive Team 1" id="revive1" reset="pImg1,pImg2,pImg3,pImg4,pImg5">Revive</button>
+  <button type="reset" x="130" y="68" width="40" height="23" tooltip="Clear Team 1 fields" id="clear1" reset="pImg1,pImg2,pImg3,pImg4,pImg5,aImg1,aImg2,aImg3,aImg4,aImg5">Clear</button>
+  
+	
+  <label x="233" y="10" width="100" height="12">Active</label>
+	<label x="270" y="10" width="110" height="12">Deaths</label>
+	
+	<label x="190" y="23" width="100" height="12">JFSL</label>
+	<checkBox id="aImg6" x="240" y="20" width="20" height="20"></checkBox>
+	<checkBox id="pImg6" x="280" y="20" width="20" height="20"></checkBox>
+	
+	<label x="190" y="38" width="100" height="12">Wolf</label>
+	<checkBox id="aImg7" x="240" y="35" width="20" height="20"></checkBox>
+	<checkBox id="pImg7" x="280" y="35" width="20" height="20"></checkBox>
+	
+	<label x="190" y="53" width="100" height="12">Seifer</label>
+	<checkBox id="aImg8" x="240" y="50" width="20" height="20"></checkBox>
+	<checkBox id="pImg8" x="280" y="50" width="20" height="20"></checkBox>
+	
+	<label x="190" y="68" width="100" height="12">Lomb</label>
+	<checkBox id="aImg9" x="240" y="65" width="20" height="20"></checkBox>
+	<checkBox id="pImg9" x="280" y="65" width="20" height="20"></checkBox>
+	
+	<label x="190" y="83" width="100" height="12">BadCat</label>
+  <checkBox id="aImg10" x="240" y="80" width="20" height="20"></checkBox>
+  <checkBox id="pImg10" x="280" y="80" width="20" height="20"></checkBox>
+	
+	<label x="190" y="110" width="100" height="12">Score</label>
+	<spinBox id="tScore2" x="230" y="107" width="50" height="20" maximum="999" />
+
+  <button type="reset" x="310" y="38" width="40" height="23" tooltip="Revive Team 2" id="revive2" reset="pImg6,pImg7,pImg8,pImg9,pImg10">Revive</button>
+  <button type="reset" x="310" y="68" width="40" height="23" tooltip="Clear Team 2 fields" id="clear2" reset="pImg6,pImg7,pImg8,pImg9,pImg10,aImg6,aImg7,aImg8,aImg9,aImg10">Clear</button>
+	
+  <button type="reset" x="310" y="105" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="tScore1,tScore2">Reset</button>
 </tab>
 </layout>

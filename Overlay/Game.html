@@ -5,6 +5,13 @@
 	<script src="js/jquery.fittext.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/countries.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/name1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/name2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/text3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/score1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/score2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/country1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/country2.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			
 			var timestampOld;
@@ -15,9 +22,10 @@
 			var pScore2;
 			var pCountry1;
 			var pCountry2;
-			var oldCountry1 = "";
-			var oldCountry2 = "";
 			var mText3;
+			
+			const pObjArray = [name1, name2, text3, score1, score2, country1, country2];
+			var pNameArray;
 			
 			var xmlDoc;
 		
@@ -53,8 +61,7 @@
 				$.play();
 			}
 			
-			function pollHandler()
-			{
+			function pollHandler() {
 			  loadData();
 			  if (timestamp != timestampOld) {
 				  doUpdate = true;
@@ -70,284 +77,56 @@
 				xhr.onreadystatechange = function(){
 						xmlDoc = xhr.responseXML;
 						
-						pName1 = getValueFromTag(xmlDoc,'pName1');
-						pName2 = getValueFromTag(xmlDoc,'pName2');
-						pScore1 = getValueFromTag(xmlDoc,'pScore1');
-						pScore2 = getValueFromTag(xmlDoc,'pScore2');
-						pCountry1 = getCountry(getValueFromTag(xmlDoc,'pCountry1'));
-						pCountry2 = getCountry(getValueFromTag(xmlDoc,'pCountry2'));
-						mText3 = getValueFromTag(xmlDoc,'mText3');
-						timestampOld = timestamp;
-						timestamp = getValueFromTag(xmlDoc,'timestamp');
-						
+						if(xmlDoc != null) {						
+							pName1 = getValueFromTag(xmlDoc,'pName1');
+							pName2 = getValueFromTag(xmlDoc,'pName2');
+							pScore1 = getValueFromTag(xmlDoc,'pScore1');
+							pScore2 = getValueFromTag(xmlDoc,'pScore2');
+							pCountry1 = '<img src="GoSquared/countries/' + getCountry(getValueFromTag(xmlDoc,'pCountry1')) + '.png" height="60">';
+							pCountry2 = '<img src="GoSquared/countries/' + getCountry(getValueFromTag(xmlDoc,'pCountry2')) + '.png" height="60">';
+							mText3 = getValueFromTag(xmlDoc,'mText3');
+							timestampOld = timestamp;
+							timestamp = getValueFromTag(xmlDoc,'timestamp');
+							pDataArray = [pName1, pName2, mText3, pScore1, pScore2, pCountry1, pCountry2];
+						}
 				}
 			}
 			
 			function updateBoard() {
-				var pWrap1 = $('#pName1');
-				var pWrap2 = $('#pName2');
-				var pWrap3 = $('#mText3');
-				if ($('#pName1').html() != pName1) {
-					animating = true;
-					$('#pName1').tween({
-						top:{
-						  start: 7,
-						  stop: -50,
-						  units: 'px',
-						  time: 0,
-						  duration: 0.5,
-						  effect:'easeIn'
-						},
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pName1').html(pName1);
-							pWrap1.each(function(i, pWrap1){
-								$(pWrap1).css('font-size', '30px');
-								while(pWrap1.scrollWidth > pWrap1.offsetWidth || pWrap1.scrollHeight > pWrap1.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap1).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap1).css('font-size', newFontSize);
+
+				pObjArray.forEach((pElement, index) => {
+					if ($(pElement.pVal.selector).html() != pDataArray[index]) {
+						animating = true;
+						//Disappear
+						$(pElement.pVal.selector).tween({
+							top : pElement.pDisappear.top,
+							opacity : pElement.pDisappear.opacity,
+							
+							onStop: function(){
+									$(pElement.pVal.selector).html(pDataArray[index]);
+									if (pElement.pText) {
+										$(pElement.pVal.selector).each(function(i, pVal){
+											$(pVal).css('font-size', '30px');
+											while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
+												var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
+												$(pVal).css('font-size', newFontSize);
+											}
+										});
+									}									
 								}
-							});
-						}
-					});
-					
-					$('#pName1').tween({
-						top:{
-						  start: -50,
-						  stop: 7,
-						  units: 'px',
-						  time: 0.5,
-						  duration: 0.5,
-						  effect:'easeOut'
-						},
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#pName2').html() != pName2) {
-					animating = true;
-					$('#pName2').tween({
-						top:{
-						  start: 7,
-						  stop: -50,
-						  units: 'px',
-						  time: 0,
-						  duration: 0.5,
-						  effect:'easeIn'
-						},
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pName2').html(pName2);
-							pWrap2.each(function(i, pWrap2){
-								$(pWrap2).css('font-size', '30px');
-								while(pWrap2.scrollWidth > pWrap2.offsetWidth || pWrap2.scrollHeight > pWrap2.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap2).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap2).css('font-size', newFontSize);
-								}
-							});
-						}
-					});
-					
-					$('#pName2').tween({
-						top:{
-						  start: -50,
-						  stop: 7,
-						  units: 'px',
-						  time: 0.5,
-						  duration: 0.5,
-						  effect:'easeOut'
-						},
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#pScore1').html() != pScore1) {
-					animating = true;
-					$('#pScore1').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pScore1').html(pScore1);
-						}
-					});
-					
-					$('#pScore1').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#pScore2').html() != pScore2) {
-					animating = true;
-					$('#pScore2').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pScore2').html(pScore2);
-						}
-					});
-					
-					$('#pScore2').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#mText3').html() != mText3) {
-					animating = true;
-					$('#mText3').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#mText3').html(mText3);
-							pWrap3.each(function(i, pWrap3){
-								$(pWrap3).css('font-size', '30px');
-								while(pWrap3.scrollWidth > pWrap3.offsetWidth || pWrap3.scrollHeight > pWrap3.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap3).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap3).css('font-size', newFontSize);
-								}
-							});
-						}
-					});
-					
-					$('#mText3').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if (oldCountry1 != pCountry1 || $('#pFlag1').opacity() == 0) {
-					animating = true;
-					$('#pFlag1').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pFlag1').html('<img src="GoSquared/countries/'+ pCountry1 +'.png" height="60">');
-							oldCountry1 = pCountry1;
-						}
-					});
-					
-					$('#pFlag1').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				
-				}
-				
-				
-				if (oldCountry2 != pCountry2 || $('#pFlag2').opacity() == 0) {
-					animating = true;
-					$('#pFlag2').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pFlag2').html('<img src="GoSquared/countries/'+ pCountry2 +'.png" height="60">');
-							oldCountry2 = pCountry2;
-						}
-					});
-					
-					$('#pFlag2').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				
-				}
-					
+						});
+						
+						//Appear
+						$(pElement.pVal.selector).tween({
+							top : pElement.pAppear.top,
+							opacity : pElement.pAppear.opacity,
+							onStop: function (){
+								animating = false;
+							}
+						});
+					}
+				});
+	
 				$.play();
 				
 				doUpdate = false;
@@ -365,18 +144,18 @@
 				}
 			}
 			
-			function getCountry (country) {
-			
-			var count = iso.findCountryByName(country);
-			if (!count)
-			count = iso.findCountryByCode(country);
-			if (!count) {
-			var count = new Array();
-			count['value'] = "unknown";
+			function getCountry (country) {					
+				var count = iso.findCountryByName(country);
+				if (!count)
+				count = iso.findCountryByCode(country);
+				if (!count) {
+				var count = new Array();
+				count['value'] = "unknown";
+				}
+				
+				return count['value'];
 			}
 			
-			return count['value'];
-		}
 	</script>
 </head>
 <body onLoad="init()">

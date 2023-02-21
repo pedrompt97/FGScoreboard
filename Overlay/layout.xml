@@ -82,7 +82,7 @@
 	<spinBox id="tScore1" x="50" y="107" width="50" height="20" maximum="999" />
 	
 	<button type="reset" x="130" y="38" width="40" height="23" tooltip="Revive Team 1" id="revive1" reset="pImg1,pImg2,pImg3,pImg4,pImg5">Revive</button>
-  <button type="reset" x="130" y="68" width="40" height="23" tooltip="Clear Team 1 fields" id="clear1" reset="pImg1,pImg2,pImg3,pImg4,pImg5,aImg1,aImg2,aImg3,aImg4,aImg5">Clear</button>
+  <button type="reset" x="130" y="68" width="40" height="23" tooltip="Clear Team 1 fields" id="cleart1" reset="pImg1,pImg2,pImg3,pImg4,pImg5,aImg1,aImg2,aImg3,aImg4,aImg5">Clear</button>
   
 	
   <label x="233" y="10" width="100" height="12">Active</label>
@@ -112,8 +112,8 @@
 	<spinBox id="tScore2" x="230" y="107" width="50" height="20" maximum="999" />
 
   <button type="reset" x="310" y="38" width="40" height="23" tooltip="Revive Team 2" id="revive2" reset="pImg6,pImg7,pImg8,pImg9,pImg10">Revive</button>
-  <button type="reset" x="310" y="68" width="40" height="23" tooltip="Clear Team 2 fields" id="clear2" reset="pImg6,pImg7,pImg8,pImg9,pImg10,aImg6,aImg7,aImg8,aImg9,aImg10">Clear</button>
+  <button type="reset" x="310" y="68" width="40" height="23" tooltip="Clear Team 2 fields" id="cleart2" reset="pImg6,pImg7,pImg8,pImg9,pImg10,aImg6,aImg7,aImg8,aImg9,aImg10">Clear</button>
 	
-  <button type="reset" x="310" y="105" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="tScore1,tScore2">Reset</button>
+  <button type="reset" x="310" y="105" width="40" height="23" tooltip="Reset the Scores" id="resett" reset="tScore1,tScore2">Reset</button>
 </tab>
 </layout>

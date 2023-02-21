@@ -43,12 +43,12 @@
 
 
 <tab name="Commentators">
-  <label x="10" y="15" width="48" height="13">Caster 1</label>
-  <label x="10" y="75" width="48" height="13">Caster 2</label>
-  <lineEdit id="mText2" x="65" y="10" width="260" height="22" dataSet="casters.csv">Commentator 1</lineEdit>
-  <lineEdit id="mText5" x="65" y="40" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText2">Twitter</lineEdit>
-  <lineEdit id="mText1" x="65" y="70" width="260" height="22" dataSet="casters.csv">Commentator 2</lineEdit>
-  <lineEdit id="mText4" x="65" y="100" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText1">Twitter</lineEdit>
+  <label x="10" y="15" width="48" height="13">L Caster</label>
+  <label x="10" y="75" width="48" height="13">R Caster</label>
+	<lineEdit id="mText1" x="65" y="10" width="260" height="22" dataSet="casters.csv">Commentator 1</lineEdit>
+  <lineEdit id="mText4" x="65" y="40" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText1">Twitter 1</lineEdit>
+	<lineEdit id="mText2" x="65" y="70" width="260" height="22" dataSet="casters.csv">Commentator 2</lineEdit>
+  <lineEdit id="mText5" x="65" y="100" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText2">Twitter 2</lineEdit>
   <button type="reset" x="340" y="70" width="40" height="23" tooltip="Clear Commentator 2 fields" id="clear3" reset="mText1,mText4">Clear</button>
   <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Casters" id="swap2" swapSet1="mText1,mText4" swapSet2="mText2,mText5">Swap</button>
   <button type="reset" x="340" y="10" width="40" height="23" tooltip="Clear Commentator 1 fields" id="clear4" reset="mText2,mText5">Clear</button>

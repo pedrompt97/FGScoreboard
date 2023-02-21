@@ -4,6 +4,8 @@
 	<script src="js/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/countries.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/name1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/name2.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			
 			var timestampOld;
@@ -11,10 +13,13 @@
 			var pName1;
 			var pName2;
 			
+			var pObjArray = [name1, name2];
+			var pDataArray;
+			
 			var xmlDoc;
 		
 			var xhr = new XMLHttpRequest();
-		
+			
 			var animating = false;
 			var doUpdate = false;
 			
@@ -24,7 +29,7 @@
 				
 				var timeout = this.window.setInterval(function() {
 					pollHandler();
-				}, 250);
+				}, 500);
 				$('#board').tween({
 				   opacity: {
 					  start: 0,
@@ -38,16 +43,13 @@
 				$.play();
 			}
 			
-			function pollHandler()
-			{
+			function pollHandler() {
 			  loadData();
 			  if (timestamp != timestampOld) {
 				  doUpdate = true;
 			  }
 			  if (!animating && doUpdate) {
-				  
 				  updateBoard();
-
 			  }
 			}	
 
@@ -55,163 +57,50 @@
 				xhr.open('GET', 'streamcontrol.xml');
 				xhr.send();
 				xhr.onreadystatechange = function(){
-						xmlDoc = xhr.responseXML;
-						
+					xmlDoc = xhr.responseXML;
+					
+					if (xmlDoc != null) {
 						pName1 = getValueFromTag(xmlDoc,'pName1');
 						pName2 = getValueFromTag(xmlDoc,'pName2');				
 						timestampOld = timestamp;
 						timestamp = getValueFromTag(xmlDoc,'timestamp');
-						
+						pDataArray = [pName1, pName2];
+					}
 				}
 			}
 			
 			function updateBoard() {
-				var pWrap1 = $('#pName1');
-				var pWrap2 = $('#pName2');
-				if ($('#pName1').html() != pName1) {
-					animating = true;
-					$('#pName1').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pName1').html(pName1);
-							pWrap1.each(function(i, pWrap1){
-								$(pWrap1).css('font-size', '40px');
-								while(pWrap1.scrollWidth > pWrap1.offsetWidth || pWrap1.scrollHeight > pWrap1.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap1).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap1).css('font-size', newFontSize);
+				pObjArray.forEach((pElement, index) => {
+					if ($(pElement.pVal.selector).html() != pDataArray[index]) {
+						animating = true;
+						//Disappear
+						$(pElement.pVal.selector).tween({
+							opacity : pElement.pDisappear.opacity,
+							
+							onStop: function(){
+									$(pElement.pVal.selector).html(pDataArray[index]);
+									if (pElement.pText) {
+										$(pElement.pVal.selector).each(function(i, pVal){
+											$(pVal).css('font-size', '40px');
+											while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
+												var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
+												$(pVal).css('font-size', newFontSize);
+											}
+										});
+									}									
 								}
-							});
-						}
-					});
-					
-					$('#pName1').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#pName2').html() != pName2) {
-					animating = true;
-					$('#pName2').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pName2').html(pName2);
-							pWrap2.each(function(i, pWrap2){
-								$(pWrap2).css('font-size', '40px');
-								while(pWrap2.scrollWidth > pWrap2.offsetWidth || pWrap2.scrollHeight > pWrap2.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap2).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap2).css('font-size', newFontSize);
-								}
-							});
-						}
-					});
-					
-					$('#pName2').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#mText4').html() != mText4) {
-					animating = true;
-					$('#mText4').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#mText4').html(mText4);
-							cWrap4.each(function(i, cWrap4){
-								$(cWrap4).css('font-size', '30px');
-								while(cWrap4.scrollWidth > cWrap4.offsetWidth || cWrap4.scrollHeight > cWrap4.offsetHeight){
-									var newFontSize = (parseFloat($(cWrap4).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(cWrap4).css('font-size', newFontSize);
-								}
-							});
-						}
-					});
-					
-					$('#mText4').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#mText5').html() != mText5) {
-					animating = true;
-					$('#mText5').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#mText5').html(mText5);
-							cWrap5.each(function(i, cWrap5){
-								$(cWrap5).css('font-size', '30px');
-								while(cWrap5.scrollWidth > cWrap5.offsetWidth || cWrap5.scrollHeight > cWrap5.offsetHeight){
-									var newFontSize = (parseFloat($(cWrap5).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(cWrap5).css('font-size', newFontSize);
-								}
-							});
-						}
-					});
-					
-					$('#mText5').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
+						});
+						
+						//Appear
+						$(pElement.pVal.selector).tween({
+							opacity : pElement.pAppear.opacity,
+							onStop: function (){
+								animating = false;
+							}
+						});
+					}
+				});
+	
 				$.play();
 				
 				doUpdate = false;
@@ -228,19 +117,6 @@
 					return '';
 				}
 			}
-			
-			function getCountry (country) {
-			
-			var count = iso.findCountryByName(country);
-			if (!count)
-			count = iso.findCountryByCode(country);
-			if (!count) {
-			var count = new Array();
-			count['value'] = "unknown";
-			}
-			
-			return count['value'];
-		}
 	</script>
 </head>
 <body onLoad="init()">

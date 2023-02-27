@@ -10,6 +10,7 @@
 	<script type="text/javascript">
 			
 			var i;
+			var j;
 			var timestampOld;
 			var timestamp;
 			var pName1;
@@ -18,12 +19,13 @@
 			var pScore2;
 			var mText3;
 			
-			var num_players = 10;
+			var team_size = 5;
+			var num_players = team_size*2;
 			
-			var active = new Array(10).fill(0);
-			var active_old = new Array(10).fill(0);
-			var dead = new Array(10).fill(0);
-			var pstop = new Array(10).fill(0);
+			var active = new Array(num_players).fill(0);
+			var active_old = new Array(num_players).fill(0);
+			var dead = new Array(num_players).fill(0);
+			var pstop = new Array(num_players).fill(0);
 			var stop1 = 600;
 			var stop2 = 1170;
 			
@@ -75,15 +77,24 @@
 			}
 			
 			function loadData() {
+				var img_path;
+				var str_i;
+				var str_j;
 				xhr.open('GET', 'streamcontrol.xml');
 				xhr.send();
 				xhr.onreadystatechange = function(){
 						xmlDoc = xhr.responseXML;
 						
 						if (xmlDoc != null) {
-							for (i = 0; i < num_players; i++) {
-								dead[i] = Number(getValueFromTag(xmlDoc, "pImg".concat((i+1).toString())))
-								active[i] = Number(getValueFromTag(xmlDoc, "aImg".concat((i+1).toString())));
+							for (i = 0; i < 2; i++) {
+								for (j = 0; j < team_size; j++) {
+									str_i = (i+1).toString();
+									str_j = (j+1).toString();
+									img_path = "t".concat(str_i).concat("Img").concat(str_j);
+									dead[i*team_size+j] = Number(getValueFromTag(xmlDoc, img_path));
+									img_path = "a".concat(str_i).concat("Img").concat(str_j);
+									active[i*team_size+j] = Number(getValueFromTag(xmlDoc, img_path));
+								}
 							}
 							pScore1 = getValueFromTag(xmlDoc,'tScore1');
 							pScore2 = getValueFromTag(xmlDoc,'tScore2');
@@ -136,8 +147,8 @@
 				
 				for (i = 0; i < num_players; i++) {
 					if (active_old[i] != active[i] && active[i] == 1) {
-						pstop[i] = (i < 5)? stop1.valueOf() : stop2.valueOf();
-						pstart = (i < 5)? -200 : 2120;
+						pstop[i] = (i < team_size)? stop1.valueOf() : stop2.valueOf();
+						pstart = (i < team_size)? -200 : 2120;
 						$('#pImg'.concat((i+1).toString())).tween({
 							left:{
 								start: pstart,
@@ -148,8 +159,8 @@
 								effect: 'easeOut'
 							}
 						});
-						if (i < 5) stop1 = stop1 - 150;
-						else stop2 = stop2 + 150;
+						if (i < team_size) stop1 = stop1 - (750/(team_size));
+						else stop2 = stop2 + (750/(team_size));
 						active_old[i] = active[i];
 					}
 				}

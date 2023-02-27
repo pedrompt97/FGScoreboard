@@ -4,7 +4,9 @@
 	<script src="js/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.fittext.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/countries.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/text3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/score1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/score2.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			
 			var i;
@@ -14,11 +16,9 @@
 			var pScore1;
 			var pName2;
 			var pScore2;
-			var pCountry1;
-			var pCountry2;
-			var oldCountry1 = "";
-			var oldCountry2 = "";
 			var mText3;
+			
+			var num_players = 10;
 			
 			var active = new Array(10).fill(0);
 			var active_old = new Array(10).fill(0);
@@ -26,6 +26,9 @@
 			var pstop = new Array(10).fill(0);
 			var stop1 = 600;
 			var stop2 = 1170;
+			
+			const pObjArray = [score1, score2, text3];
+			var pDataArray;
 			
 			var xmlDoc;
 		
@@ -41,13 +44,11 @@
 					pollHandler();
 				}, 500);
 				
-				for (i = 0; i < 10; i++)
+				for (i = 0; i < num_players; i++)
 					$('#pImg'.concat((i+1).toString())).opacity(0);
 				
 				$('#pScore1').html('');
-				$('#pFlag1').opacity(0);
 				$('#pScore2').html('');
-				$('#pFlag2').opacity(0);
 				$('#mText3').html('');
 				$('#board').tween({
 				   opacity: {
@@ -79,185 +80,61 @@
 				xhr.onreadystatechange = function(){
 						xmlDoc = xhr.responseXML;
 						
-						for (i = 0; i < 10; i++) {
-							dead[i] = Number(getValueFromTag(xmlDoc, "pImg".concat((i+1).toString())))
-							active[i] = Number(getValueFromTag(xmlDoc, "aImg".concat((i+1).toString())));
+						if (xmlDoc != null) {
+							for (i = 0; i < num_players; i++) {
+								dead[i] = Number(getValueFromTag(xmlDoc, "pImg".concat((i+1).toString())))
+								active[i] = Number(getValueFromTag(xmlDoc, "aImg".concat((i+1).toString())));
+							}
+							pScore1 = getValueFromTag(xmlDoc,'tScore1');
+							pScore2 = getValueFromTag(xmlDoc,'tScore2');
+							mText3 = getValueFromTag(xmlDoc,'mText3');
+							timestampOld = timestamp;
+							timestamp = getValueFromTag(xmlDoc,'timestamp');
+							pDataArray = [pScore1, pScore2, mText3];
 						}
-						pScore1 = getValueFromTag(xmlDoc,'tScore1');
-						pScore2 = getValueFromTag(xmlDoc,'tScore2');
-						pCountry1 = getCountry(getValueFromTag(xmlDoc,'pCountry1'));
-						pCountry2 = getCountry(getValueFromTag(xmlDoc,'pCountry2'));
-						mText3 = getValueFromTag(xmlDoc,'mText3');
-						timestampOld = timestamp;
-						timestamp = getValueFromTag(xmlDoc,'timestamp');
-						
 				}
 			}
 			
 			function updateBoard() {
-				var pWrap3 = $('#mText3');
-				
-				for (i = 0; i < 10; i++)
-					(dead[i] == 1) ? $("#pImg".concat((i+1).toString())).addClass('death') : $("#pImg".concat((i+1).toString())).removeClass('death')
-						
-				if ($('#pScore1').html() != pScore1) {
-					animating = true;
-					$('#pScore1').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pScore1').html(pScore1);
-						}
-					});
-					
-					$('#pScore1').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#pScore2').html() != pScore2) {
-					animating = true;
-					$('#pScore2').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pScore2').html(pScore2);
-						}
-					});
-					
-					$('#pScore2').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
-				
-				if ($('#mText3').html() != mText3) {
-					animating = true;
-					$('#mText3').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#mText3').html(mText3);
-							pWrap3.each(function(i, pWrap3){
-								$(pWrap3).css('font-size', '30px');
-								while(pWrap3.scrollWidth > pWrap3.offsetWidth || pWrap3.scrollHeight > pWrap3.offsetHeight){
-									var newFontSize = (parseFloat($(pWrap3).css('font-size').slice(0,-2)) * .95) + 'px';
-									$(pWrap3).css('font-size', newFontSize);
+
+				pObjArray.forEach((pElement, index) => {
+					if ($(pElement.pVal.selector).html() != pDataArray[index]) {
+						animating = true;
+						//Disappear
+						$(pElement.pVal.selector).tween({
+							top : pElement.pDisappear.top,
+							opacity : pElement.pDisappear.opacity,
+							
+							onStop: function(){
+									$(pElement.pVal.selector).html(pDataArray[index]);
+									if (pElement.pText) {
+										$(pElement.pVal.selector).each(function(i, pVal){
+											$(pVal).css('font-size', '30px');
+											while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
+												var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
+												$(pVal).css('font-size', newFontSize);
+											}
+										});
+									}									
 								}
-							});
-						}
-					});
-					
-					$('#mText3').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				}
+						});
+						
+						//Appear
+						$(pElement.pVal.selector).tween({
+							top : pElement.pAppear.top,
+							opacity : pElement.pAppear.opacity,
+							onStop: function (){
+								animating = false;
+							}
+						});
+					}
+				});
 				
-				if (oldCountry1 != pCountry1 || $('#pFlag1').opacity() == 0) {
-					animating = true;
-					$('#pFlag1').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pFlag1').html('<img src="GoSquared/countries/'+ pCountry1 +'.png" height="60">');
-							oldCountry1 = pCountry1;
-						}
-					});
-					
-					$('#pFlag1').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				
-				}
+				for (i = 0; i < num_players; i++)
+					(dead[i] == 1) ? $("#pImg".concat((i+1).toString())).addClass('death') : $("#pImg".concat((i+1).toString())).removeClass('death')
 				
 				
-				if (oldCountry2 != pCountry2 || $('#pFlag2').opacity() == 0) {
-					animating = true;
-					$('#pFlag2').tween({
-						opacity: {
-						  start: 100,
-						  stop: 0,
-						  time: 0,
-						  duration: 0.5,
-						  effect: 'easeIn'
-						},
-						onStop: function(){
-							$('#pFlag2').html('<img src="GoSquared/countries/'+ pCountry2 +'.png" height="60">');
-							oldCountry2 = pCountry2;
-						}
-					});
-					
-					$('#pFlag2').tween({
-						opacity: {
-						  start: 0,
-						  stop: 100,
-						  time: 0.5,
-						  duration: 0.5,
-						  effect: 'easeOut'
-						},
-						onStop: function(){
-							animating = false;
-						}
-					});
-				
-				}
-				
-				for (i = 0; i < 10; i++) {
+				for (i = 0; i < num_players; i++) {
 					if (active_old[i] != active[i] && active[i] == 1) {
 						pstop[i] = (i < 5)? stop1.valueOf() : stop2.valueOf();
 						pstart = (i < 5)? -200 : 2120;
@@ -303,31 +180,16 @@
 					return '';
 				}
 			}
-			
-			function getCountry (country) {
-			
-			var count = iso.findCountryByName(country);
-			if (!count)
-			count = iso.findCountryByCode(country);
-			if (!count) {
-			var count = new Array();
-			count['value'] = "unknown";
-			}
-			
-			return count['value'];
-		}
 	</script>
 </head>
 <body onLoad="init()">
 	<div id="board">
-		<div id="pFlag1"></div>
 		<span id="pImg1" class="pImg"></span>
 		<span id="pImg2" class="pImg"></span>
 		<span id="pImg3" class="pImg"></span>
 		<span id="pImg4" class="pImg"></span>
 		<span id="pImg5" class="pImg"></span>
 		<div id="pScore1">99</div>
-		<div id="pFlag2"></div>
 		<span id="pImg6" class="pImg"></span>
 		<span id="pImg7" class="pImg"></span>
 		<span id="pImg8" class="pImg"></span>

@@ -1,20 +1,20 @@
 <!DOCTYPE StreamControlLayout>
-<layout width="500" height="260" tabbed="1">
+<layout width="450" height="260" tabbed="1">
 <tab name="Scoreboard">
-  <lineEdit id="pName1" x="10" y="20" width="160" height="20" dataSet="players.csv" >Player 1</lineEdit>
-  <lineEdit id="pCountry1" x="180" y="20" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
-  <lineEdit id="pName2" x="10" y="60" width="160" height="20" dataSet="players.csv" >Player 2</lineEdit>
-  <lineEdit id="pCountry2" x="180" y="60" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
-  <spinBox id="pScore1" x="240" y="20" width="50" height="22" maximum="999" />
-  <spinBox id="pScore2" x="240" y="60" width="50" height="22" maximum="999" />
+  <lineEdit id="pName1" x="10" y="20" width="200" height="20" dataSet="players.csv" >Player 1</lineEdit>
+  <lineEdit id="pCountry1" x="220" y="20" width="50" height="20" dataSet="players.csv" dataField="2" master="pName1" >Country</lineEdit>
+  <lineEdit id="pName2" x="10" y="60" width="200" height="20" dataSet="players.csv" >Player 2</lineEdit>
+  <lineEdit id="pCountry2" x="220" y="60" width="50" height="20" dataSet="players.csv" dataField="2" master="pName2" >Country</lineEdit>
+  <spinBox id="pScore1" x="280" y="20" width="50" height="22" maximum="999" />
+  <spinBox id="pScore2" x="280" y="60" width="50" height="22" maximum="999" />
   
-  <button type="reset" x="300" y="20" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1">Clear</button>
-  <button type="reset" x="340" y="20" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
-  <button type="reset" x="300" y="60" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2">Clear</button>
-  <button type="swap" x="340" y="60" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
+  <button type="reset" x="335" y="20" width="40" height="23" tooltip="Clear Player 1 fields" id="clear1" reset="pName1,pCountry1">Clear</button>
+  <button type="reset" x="380" y="20" width="40" height="23" tooltip="Reset the Scores" id="reset" reset="pScore1,pScore2">Reset</button>
+  <button type="reset" x="335" y="60" width="40" height="23" tooltip="Clear Player 2 fields" id="clear2" reset="pName2,pCountry2">Clear</button>
+  <button type="swap" x="380" y="60" width="40" height="23" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pCountry1" swapSet2="pName2,pScore2,pCountry2">Swap</button>
   
   <label x="10" y="105" width="46" height="13">Label</label>
-  <comboBox id="mText3" x="65" y="100" width="316" height="22" editable="1">	
+  <comboBox id="mText3" x="65" y="100" width="355" height="22" editable="1">	
 		<comboItem> </comboItem>
 		<comboItem>Casuals</comboItem>
 		<comboItem>Swiss (Round 1)</comboItem>
@@ -43,93 +43,105 @@
 
 
 <tab name="Commentators">
-  <label x="10" y="15" width="48" height="13">L Caster</label>
-  <label x="10" y="75" width="48" height="13">R Caster</label>
-	<lineEdit id="mText1" x="65" y="10" width="260" height="22" dataSet="casters.csv">Commentator 1</lineEdit>
-  <lineEdit id="mText4" x="65" y="40" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText1">Twitter 1</lineEdit>
-	<lineEdit id="mText2" x="65" y="70" width="260" height="22" dataSet="casters.csv">Commentator 2</lineEdit>
-  <lineEdit id="mText5" x="65" y="100" width="260" height="22" dataSet="casters.csv" dataField="2" master="mText2">Twitter 2</lineEdit>
-  <button type="reset" x="340" y="70" width="40" height="23" tooltip="Clear Commentator 2 fields" id="clear3" reset="mText1,mText4">Clear</button>
-  <button type="swap" x="340" y="40" width="40" height="23" tooltip="Swap the Casters" id="swap2" swapSet1="mText1,mText4" swapSet2="mText2,mText5">Swap</button>
-  <button type="reset" x="340" y="10" width="40" height="23" tooltip="Clear Commentator 1 fields" id="clear4" reset="mText2,mText5">Clear</button>
+  <label x="10" y="15" width="60" height="13">Left Caster</label>
+  <label x="10" y="75" width="60" height="13">Right Caster</label>
+	<lineEdit id="mText1" x="85" y="10" width="280" height="22" dataSet="casters.csv">Commentator 1</lineEdit>
+  <lineEdit id="mText4" x="85" y="40" width="280" height="22" dataSet="casters.csv" dataField="2" master="mText1">Twitter 1</lineEdit>
+	<lineEdit id="mText2" x="85" y="70" width="280" height="22" dataSet="casters.csv">Commentator 2</lineEdit>
+  <lineEdit id="mText5" x="85" y="100" width="280" height="22" dataSet="casters.csv" dataField="2" master="mText2">Twitter 2</lineEdit>
+	<button type="reset" x="380" y="10" width="40" height="23" tooltip="Clear Commentator 1 fields" id="clear4" reset="mText4,mText1">Clear</button>
+  <button type="swap" x="380" y="40" width="40" height="23" tooltip="Swap the Casters" id="swap2" swapSet1="mText1,mText4" swapSet2="mText2,mText5">Swap</button>
+	<button type="reset" x="380" y="70" width="40" height="23" tooltip="Clear Commentator 2 fields" id="clear3" reset="mText2,mText5">Clear</button>
 </tab>
 
 <tab name="Team Players">
-	<label x="118" y="10" width="100" height="12">Active</label>
-	<label x="155" y="10" width="110" height="12">Deaths</label>
+	<label x="184" y="10" width="100" height="12">A</label>
+	<label x="204" y="10" width="110" height="12">D</label>
 	
-	<lineEdit x="10" y="25" width="100" height="12" id="t1Name1">Player1</lineEdit>
-	<checkBox id="a1Img1" x="125" y="25" width="20" height="20"></checkBox>
-	<checkBox id="t1Img1" x="165" y="25" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="25" width="80" height="12" id="t1Name1">Player1</lineEdit>
+	<lineEdit x="95" y="25" width="80" height="12" id="t1Char1">Char1</lineEdit>
+	<checkBox id="a1Img1" x="180" y="25" width="20" height="20"></checkBox>
+	<checkBox id="t1Img1" x="200" y="25" width="20" height="20"></checkBox>
 
-	<lineEdit x="10" y="45" width="100" height="12" id="t1Name2">Player2</lineEdit>
-	<checkBox id="a1Img2" x="125" y="45" width="20" height="20"></checkBox>
-	<checkBox id="t1Img2" x="165" y="45" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="45" width="80" height="12" id="t1Name2">Player2</lineEdit>
+	<lineEdit x="95" y="45" width="80" height="12" id="t1Char2">Char2</lineEdit>
+	<checkBox id="a1Img2" x="180" y="45" width="20" height="20"></checkBox>
+	<checkBox id="t1Img2" x="200" y="45" width="20" height="20"></checkBox>
 	
-	<lineEdit x="10" y="65" width="100" height="12" id="t1Name3">Player3</lineEdit>
-	<checkBox id="a1Img3" x="125" y="65" width="20" height="20"></checkBox>
-	<checkBox id="t1Img3" x="165" y="65" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="65" width="80" height="12" id="t1Name3">Player3</lineEdit>
+	<lineEdit x="95" y="65" width="80" height="12" id="t1Char3">Char3</lineEdit>
+	<checkBox id="a1Img3" x="180" y="65" width="20" height="20"></checkBox>
+	<checkBox id="t1Img3" x="200" y="65" width="20" height="20"></checkBox>
 	
-	<lineEdit x="10" y="85" width="100" height="12" id="t1Name4">Player4</lineEdit>
-	<checkBox id="a1Img4" x="125" y="85" width="20" height="20"></checkBox>
-	<checkBox id="t1Img4" x="165" y="85" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="85" width="80" height="12" id="t1Name4">Player4</lineEdit>
+	<lineEdit x="95" y="85" width="80" height="12" id="t1Char4">Char4</lineEdit>
+	<checkBox id="a1Img4" x="180" y="85" width="20" height="20"></checkBox>
+	<checkBox id="t1Img4" x="200" y="85" width="20" height="20"></checkBox>
 	
-	<lineEdit x="10" y="105" width="100" height="12" id="t1Name5">Player5</lineEdit>
-  <checkBox id="a1Img5" x="125" y="105" width="20" height="20"></checkBox>
-	<checkBox id="t1Img5" x="165" y="105" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="105" width="80" height="12" id="t1Name5">Player5</lineEdit>
+	<lineEdit x="95" y="105" width="80" height="12" id="t1Char5">Char5</lineEdit>
+  <checkBox id="a1Img5" x="180" y="105" width="20" height="20"></checkBox>
+	<checkBox id="t1Img5" x="200" y="105" width="20" height="20"></checkBox>
 	
-	<lineEdit x="10" y="125" width="100" height="12" id="t1Name6">Player6</lineEdit>
-  <checkBox id="a1Img6" x="125" y="125" width="20" height="20"></checkBox>
-	<checkBox id="t1Img6" x="165" y="125" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="125" width="80" height="12" id="t1Name6">Player6</lineEdit>
+	<lineEdit x="95" y="125" width="80" height="12" id="t1Char6">Char6</lineEdit>
+  <checkBox id="a1Img6" x="180" y="125" width="20" height="20"></checkBox>
+	<checkBox id="t1Img6" x="200" y="125" width="20" height="20"></checkBox>
 	
-	<lineEdit x="10" y="145" width="100" height="12" id="t1Name7">Player7</lineEdit>
-  <checkBox id="a1Img7" x="125" y="145" width="20" height="20"></checkBox>
-	<checkBox id="t1Img7" x="165" y="145" width="20" height="20"></checkBox>
+	<lineEdit x="10" y="145" width="80" height="12" id="t1Name7">Player7</lineEdit>
+	<lineEdit x="95" y="145" width="80" height="12" id="t1Char7">Char7</lineEdit>
+  <checkBox id="a1Img7" x="180" y="145" width="20" height="20"></checkBox>
+	<checkBox id="t1Img7" x="200" y="145" width="20" height="20"></checkBox>
 	
 	<label x="10" y="175" width="100" height="12">Score</label>
 	<spinBox id="tScore1" x="50" y="172" width="50" height="20" maximum="999" />
 	
-	<button type="reset" x="195" y="58" width="40" height="23" tooltip="Revive Team 1" id="revive1" reset="t1Img1,t1Img2,t1Img3,t1Img4,t1Img5,t1Img6,t1Img7">Revive</button>
-  <button type="reset" x="195" y="98" width="40" height="23" tooltip="Clear Team 1 fields" id="cleart1" reset="t1Img1,t1Img2,t1Img3,t1Img4,t1Img5,t1Img6,t1Img7,a1Img1,a1Img2,a1Img3,a1Img4,a1Img5,a1Img6,a1Img7">Clear</button>
+	<button type="reset" x="130" y="170" width="40" height="23" tooltip="Revive Team 1" id="revive1" reset="t1Img1,t1Img2,t1Img3,t1Img4,t1Img5,t1Img6,t1Img7">Revive</button>
+  <button type="reset" x="175" y="170" width="40" height="23" tooltip="Clear Team 1 fields" id="cleart1" reset="t1Img1,t1Img2,t1Img3,t1Img4,t1Img5,t1Img6,t1Img7,a1Img1,a1Img2,a1Img3,a1Img4,a1Img5,a1Img6,a1Img7">Clear</button>
   
 	
-  <label x="358" y="10" width="100" height="12">Active</label>
-	<label x="395" y="10" width="110" height="12">Deaths</label>
+  <label x="404" y="10" width="100" height="12">A</label>
+	<label x="424" y="10" width="110" height="12">D</label>
 	
-	<lineEdit x="250" y="25" width="100" height="12" id="t2Name1">Player1</lineEdit>
-	<checkBox id="a2Img1" x="365" y="25" width="20" height="20"></checkBox>
-	<checkBox id="t2Img1" x="405" y="25" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="25" width="80" height="12" id="t2Name1">Player1</lineEdit>
+	<lineEdit x="315" y="25" width="80" height="12" id="t2Char1">Char1</lineEdit>
+	<checkBox id="a2Img1" x="400" y="25" width="20" height="20"></checkBox>
+	<checkBox id="t2Img1" x="420" y="25" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="45" width="100" height="12" id="t2Name2">Player2</lineEdit>
-	<checkBox id="a2Img2" x="365" y="45" width="20" height="20"></checkBox>
-	<checkBox id="t2Img2" x="405" y="45" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="45" width="80" height="12" id="t2Name2">Player2</lineEdit>
+	<lineEdit x="315" y="45" width="80" height="12" id="t2Char2">Char2</lineEdit>
+	<checkBox id="a2Img2" x="400" y="45" width="20" height="20"></checkBox>
+	<checkBox id="t2Img2" x="420" y="45" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="65" width="100" height="12" id="t2Name3">Player3</lineEdit>
-	<checkBox id="a2Img3" x="365" y="65" width="20" height="20"></checkBox>
-	<checkBox id="t2Img3" x="405" y="65" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="65" width="80" height="12" id="t2Name3">Player3</lineEdit>
+	<lineEdit x="315" y="65" width="80" height="12" id="t2Char3">Char3</lineEdit>
+	<checkBox id="a2Img3" x="400" y="65" width="20" height="20"></checkBox>
+	<checkBox id="t2Img3" x="420" y="65" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="85" width="100" height="12" id="t2Name4">Player4</lineEdit>
-	<checkBox id="a2Img4" x="365" y="85" width="20" height="20"></checkBox>
-	<checkBox id="t2Img4" x="405" y="85" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="85" width="80" height="12" id="t2Name4">Player4</lineEdit>
+	<lineEdit x="315" y="85" width="80" height="12" id="t2Char4">Char4</lineEdit>
+	<checkBox id="a2Img4" x="400" y="85" width="20" height="20"></checkBox>
+	<checkBox id="t2Img4" x="420" y="85" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="105" width="100" height="12" id="t2Name5">Player5</lineEdit>
-  <checkBox id="a2Img5" x="365" y="105" width="20" height="20"></checkBox>
-  <checkBox id="t2Img5" x="405" y="105" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="105" width="80" height="12" id="t2Name5">Player5</lineEdit>
+	<lineEdit x="315" y="105" width="80" height="12" id="t2Char5">Char5</lineEdit>
+  <checkBox id="a2Img5" x="400" y="105" width="20" height="20"></checkBox>
+  <checkBox id="t2Img5" x="420" y="105" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="125" width="100" height="12" id="t2Name6">Player6</lineEdit>
-  <checkBox id="a2Img6" x="365" y="125" width="20" height="20"></checkBox>
-  <checkBox id="t2Img6" x="405" y="125" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="125" width="80" height="12" id="t2Name6">Player6</lineEdit>
+	<lineEdit x="315" y="125" width="80" height="12" id="t2Char6">Char6</lineEdit>
+  <checkBox id="a2Img6" x="400" y="125" width="20" height="20"></checkBox>
+  <checkBox id="t2Img6" x="420" y="125" width="20" height="20"></checkBox>
 	
-	<lineEdit x="250" y="145" width="100" height="12" id="t2Name7">Player7</lineEdit>
-  <checkBox id="a2Img7" x="365" y="145" width="20" height="20"></checkBox>
-  <checkBox id="t2Img7" x="405" y="145" width="20" height="20"></checkBox>
+	<lineEdit x="230" y="145" width="80" height="12" id="t2Name7">Player7</lineEdit>
+	<lineEdit x="315" y="145" width="80" height="12" id="t2Char7">Char7</lineEdit>
+  <checkBox id="a2Img7" x="400" y="145" width="20" height="20"></checkBox>
+  <checkBox id="t2Img7" x="420" y="145" width="20" height="20"></checkBox>
 	
-	<label x="250" y="175" width="100" height="12">Score</label>
-	<spinBox id="tScore2" x="290" y="172" width="50" height="20" maximum="999" />
+	<label x="230" y="175" width="100" height="12">Score</label>
+	<spinBox id="tScore2" x="270" y="172" width="50" height="20" maximum="999" />
 
-  <button type="reset" x="435" y="58" width="40" height="23" tooltip="Revive Team 2" id="revive2" reset="t2Img1,t2Img2,t2Img3,t2Img5,t2Img5,t2Img6,t2Img7">Revive</button>
-  <button type="reset" x="435" y="98" width="40" height="23" tooltip="Clear Team 2 fields" id="cleart2" reset="t2Img1,t2Img2,t2Img3,t2Img4,t2Img5,t2Img6,t2Img7,a2Img1,a2Img2,a2Img3,a2Img4,a2Img5,a2Img6,a2Img7">Clear</button>
-	
-  <button type="reset" x="435" y="170" width="40" height="23" tooltip="Reset the Scores" id="resett" reset="tScore1,tScore2">Reset</button>
+  <button type="reset" x="350" y="170" width="40" height="23" tooltip="Revive Team 2" id="revive2" reset="t2Img1,t2Img2,t2Img3,t2Img5,t2Img5,t2Img6,t2Img7">Revive</button>
+  <button type="reset" x="395" y="170" width="40" height="23" tooltip="Clear Team 2 fields" id="cleart2" reset="t2Img1,t2Img2,t2Img3,t2Img4,t2Img5,t2Img6,t2Img7,a2Img1,a2Img2,a2Img3,a2Img4,a2Img5,a2Img6,a2Img7">Clear</button>
 </tab>
 </layout>

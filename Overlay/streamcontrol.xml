@@ -1,37 +1,73 @@
 <!DOCTYPE StreamControl>
 <items>
- <timestamp>1676988220</timestamp>
- <aImg1>0</aImg1>
- <aImg10>0</aImg10>
- <aImg2>0</aImg2>
- <aImg3>0</aImg3>
- <aImg4>0</aImg4>
- <aImg5>0</aImg5>
- <aImg6>0</aImg6>
- <aImg7>0</aImg7>
- <aImg8>0</aImg8>
- <aImg9>0</aImg9>
- <mText1>Comentador 1</mText1>
- <mText2>Comentador 2</mText2>
+ <timestamp>1677958008</timestamp>
+ <a1Img1>0</a1Img1>
+ <a1Img2>0</a1Img2>
+ <a1Img3>0</a1Img3>
+ <a1Img4>0</a1Img4>
+ <a1Img5>0</a1Img5>
+ <a1Img6>0</a1Img6>
+ <a1Img7>0</a1Img7>
+ <a2Img1>0</a2Img1>
+ <a2Img2>0</a2Img2>
+ <a2Img3>0</a2Img3>
+ <a2Img4>0</a2Img4>
+ <a2Img5>0</a2Img5>
+ <a2Img6>0</a2Img6>
+ <a2Img7>0</a2Img7>
+ <mText1></mText1>
+ <mText2></mText2>
  <mText3></mText3>
- <mText4>Twitter 1</mText4>
- <mText5>Twitter 2</mText5>
- <pCountry1>PT</pCountry1>
+ <mText4></mText4>
+ <mText5></mText5>
+ <pCountry1></pCountry1>
  <pCountry2></pCountry2>
- <pImg1>0</pImg1>
- <pImg10>0</pImg10>
- <pImg2>0</pImg2>
- <pImg3>0</pImg3>
- <pImg4>0</pImg4>
- <pImg5>0</pImg5>
- <pImg6>0</pImg6>
- <pImg7>0</pImg7>
- <pImg8>0</pImg8>
- <pImg9>0</pImg9>
- <pName1>SSD | Skill iT</pName1>
- <pName2>Seifer</pName2>
- <pScore1>3</pScore1>
+ <pName1></pName1>
+ <pName2></pName2>
+ <pScore1>0</pScore1>
  <pScore2>0</pScore2>
+ <t1Char1></t1Char1>
+ <t1Char2></t1Char2>
+ <t1Char3></t1Char3>
+ <t1Char4></t1Char4>
+ <t1Char5></t1Char5>
+ <t1Char6></t1Char6>
+ <t1Char7></t1Char7>
+ <t1Img1>0</t1Img1>
+ <t1Img2>0</t1Img2>
+ <t1Img3>0</t1Img3>
+ <t1Img4>0</t1Img4>
+ <t1Img5>0</t1Img5>
+ <t1Img6>0</t1Img6>
+ <t1Img7>0</t1Img7>
+ <t1Name1></t1Name1>
+ <t1Name2></t1Name2>
+ <t1Name3></t1Name3>
+ <t1Name4></t1Name4>
+ <t1Name5></t1Name5>
+ <t1Name6></t1Name6>
+ <t1Name7></t1Name7>
+ <t2Char1></t2Char1>
+ <t2Char2></t2Char2>
+ <t2Char3></t2Char3>
+ <t2Char4></t2Char4>
+ <t2Char5></t2Char5>
+ <t2Char6></t2Char6>
+ <t2Char7></t2Char7>
+ <t2Img1>0</t2Img1>
+ <t2Img2>0</t2Img2>
+ <t2Img3>0</t2Img3>
+ <t2Img4>0</t2Img4>
+ <t2Img5>0</t2Img5>
+ <t2Img6>0</t2Img6>
+ <t2Img7>0</t2Img7>
+ <t2Name1></t2Name1>
+ <t2Name2></t2Name2>
+ <t2Name3></t2Name3>
+ <t2Name4></t2Name4>
+ <t2Name5></t2Name5>
+ <t2Name6></t2Name6>
+ <t2Name7></t2Name7>
  <tScore1>0</tScore1>
  <tScore2>0</tScore2>
 </items>

@@ -7,29 +7,33 @@
 	<script src="objects/text3.js" type="text/javascript" charset="utf-8"></script>
 	<script src="objects/score1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="objects/score2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="objects/char_img.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			
-			var i;
-			var j;
 			var timestampOld;
 			var timestamp;
-			var pName1;
 			var pScore1;
-			var pName2;
 			var pScore2;
 			var mText3;
 			
-			var team_size = 5;
+			
+			
+			var team_size = 7;
 			var num_players = team_size*2;
 			
+			var pName = new Array(num_players).fill("");
+			var pChar = new Array(num_players).fill("");
 			var active = new Array(num_players).fill(0);
 			var active_old = new Array(num_players).fill(0);
 			var dead = new Array(num_players).fill(0);
 			var pstop = new Array(num_players).fill(0);
-			var stop1 = 600;
+			var stop1 = 750 - 750/team_size;
 			var stop2 = 1170;
 			
 			const pObjArray = [score1, score2, text3];
+			var pNameArray = new Array(num_players);
+			var pImgArray = new Array(num_players);
+			var CharImg = new Array(num_players).fill("");
 			var pDataArray;
 			
 			var xmlDoc;
@@ -40,15 +44,29 @@
 			var doUpdate = false;
 			
 			function init() {
+				var i;
+				var img_init_pos;
+				var img_width, img_height;
 				xhr.overrideMimeType('text/xml');
 				
 				var timeout = this.window.setInterval(function() {
 					pollHandler();
 				}, 500);
 				
-				for (i = 0; i < num_players; i++)
-					$('#pImg'.concat((i+1).toString())).opacity(0);
+				for (i = 0; i < 14; i++) {
+					pNameArray[i] = {pVal : $('#pName'.concat((i+1).toString()))};
+					pImgArray[i] = {pVal : $('#pImg'.concat((i+1).toString()))};
 				
+					img_init_pos = (i < team_size)? -200 : 2120;
+					img_width = 750/team_size;
+					img_height = 450/team_size;
+					$("#pImg".concat((i+1).toString())).css({'left': img_init_pos + 'px', 'width': img_width + 'px', 'height': img_height + 'px'});
+					$('#pImg'.concat((i+1).toString())).opacity(0);
+					
+					$('#pName'.concat((i+1).toString())).css({'left': img_init_pos + 'px', 'width': img_width + 'px', 'height': img_height/2 + 'px', 'line-height': img_height/2 + 'px', 'top': img_height*3/4 + 'px'});
+				}
+				$('#lBox').css({'height': img_height*5/4 + 'px'});
+				$('#rBox').css({'height': img_height*5/4 + 'px', 'left':1920 - 790 + 'px'});
 				$('#pScore1').html('');
 				$('#pScore2').html('');
 				$('#mText3').html('');
@@ -57,6 +75,26 @@
 					  start: 0,
 					  stop: 100,
 					  time: 0.5,
+					  duration: 0.5,
+					  effect: 'easeOut'
+					}
+				});
+				
+				$('#lBox').tween({
+				   opacity: {
+					  start: 0,
+					  stop: 100,
+					  time: 1,
+					  duration: 0.5,
+					  effect: 'easeOut'
+					}
+				});
+				
+				$('#rBox').tween({
+				   opacity: {
+					  start: 0,
+					  stop: 100,
+					  time: 1,
 					  duration: 0.5,
 					  effect: 'easeOut'
 					}
@@ -77,7 +115,9 @@
 			}
 			
 			function loadData() {
-				var img_path;
+				var i;
+				var j;
+				var str_tmp;
 				var str_i;
 				var str_j;
 				xhr.open('GET', 'streamcontrol.xml');
@@ -90,10 +130,16 @@
 								for (j = 0; j < team_size; j++) {
 									str_i = (i+1).toString();
 									str_j = (j+1).toString();
-									img_path = "t".concat(str_i).concat("Img").concat(str_j);
-									dead[i*team_size+j] = Number(getValueFromTag(xmlDoc, img_path));
-									img_path = "a".concat(str_i).concat("Img").concat(str_j);
-									active[i*team_size+j] = Number(getValueFromTag(xmlDoc, img_path));
+									
+									str_tmp = "t".concat(str_i).concat("Img").concat(str_j);
+									dead[i*team_size+j] = Number(getValueFromTag(xmlDoc, str_tmp));
+									str_tmp = "a".concat(str_i).concat("Img").concat(str_j);
+									active[i*team_size+j] = Number(getValueFromTag(xmlDoc, str_tmp));
+									
+									str_tmp = "t".concat(str_i).concat("Name").concat(str_j);
+									pName[i*team_size+j] = getValueFromTag(xmlDoc, str_tmp);
+									str_tmp = "t".concat(str_i).concat("Char").concat(str_j);
+									pChar[i*team_size+j] = getValueFromTag(xmlDoc, str_tmp);
 								}
 							}
 							pScore1 = getValueFromTag(xmlDoc,'tScore1');
@@ -107,7 +153,11 @@
 			}
 			
 			function updateBoard() {
-
+				var i;
+				var j;
+				var image_path;
+				
+				//Update Scores
 				pObjArray.forEach((pElement, index) => {
 					if ($(pElement.pVal.selector).html() != pDataArray[index]) {
 						animating = true;
@@ -117,17 +167,17 @@
 							opacity : pElement.pDisappear.opacity,
 							
 							onStop: function(){
-									$(pElement.pVal.selector).html(pDataArray[index]);
-									if (pElement.pText) {
-										$(pElement.pVal.selector).each(function(i, pVal){
-											$(pVal).css('font-size', '30px');
-											while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
-												var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
-												$(pVal).css('font-size', newFontSize);
-											}
-										});
-									}									
+								$(pElement.pVal.selector).html(pDataArray[index]);
+								if (pElement.pText) {
+									$(pElement.pVal.selector).each(function(i, pVal){
+										$(pVal).css('font-size', '30px');
+										while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
+											var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
+											$(pVal).css('font-size', newFontSize);
+										}
+									});
 								}
+							}
 						});
 						
 						//Appear
@@ -141,40 +191,124 @@
 					}
 				});
 				
-				for (i = 0; i < num_players; i++)
-					(dead[i] == 1) ? $("#pImg".concat((i+1).toString())).addClass('death') : $("#pImg".concat((i+1).toString())).removeClass('death')
-				
-				
-				for (i = 0; i < num_players; i++) {
-					if (active_old[i] != active[i] && active[i] == 1) {
-						pstop[i] = (i < team_size)? stop1.valueOf() : stop2.valueOf();
-						pstart = (i < team_size)? -200 : 2120;
-						$('#pImg'.concat((i+1).toString())).tween({
-							left:{
-								start: pstart,
-								stop: pstop[i],
-								units: 'px',
-								time: 0,
-								duration: 0,
-								effect: 'easeOut'
-							}
-						});
-						if (i < team_size) stop1 = stop1 - (750/(team_size));
-						else stop2 = stop2 + (750/(team_size));
-						active_old[i] = active[i];
+				///////////////////////////////////////////
+				// Update Images - First time
+				///////////////////////////////////////////
+				for (i = 0; i < 2; i++) {
+					for (j = 0; j < team_size; j++) {
+						if (active_old[i*team_size+j] != active[i*team_size+j] && active[i*team_size+j] == 1) {
+							//Find character image
+							image_path = "images/Tekken_7_Characters_PNGs/".concat(pChar[i*team_size+j]).concat(".png");
+							$("#pImg".concat((i*team_size+j+1).toString())).html('<img src="' + image_path + '" style="max-height: 100%;max-width: 100%;object-fit: fill;"></img>');
+							CharImg[i*team_size+j] = image_path;
+							
+							//Image animation
+							pstop[i*team_size+j] = (i == 0)? stop1.valueOf() : stop2.valueOf();
+							pstart = (i == 0)? -200 : 2120;
+							animating = true;
+							$('#pImg'.concat((i*team_size+j+1).toString())).tween({
+								left:{
+									start: pstart,
+									stop: pstop[i*team_size+j],
+									units: 'px',
+									time: 0,
+									duration: 1.5,
+									effect: 'easeOut'
+								},
+								opacity:{
+									start: 0,
+									stop: 100,
+									time: 0,
+									duration: 1.5,
+									effect: 'easeOut'
+								},
+								onStop: function (){animating = false;}
+							});
+							//Update stopping point for next image
+							if (i == 0) stop1 = stop1 - (750/(team_size));
+							else stop2 = stop2 + (750/(team_size));
+							
+							active_old[i*team_size+j] = active[i*team_size+j];
+						}
 					}
 				}
-			
-				$('.pImg').tween({
-					opacity: {
-						start: 0,
-						stop: 100,
-						time: 0,
-						duration: 1,
-						effect: 'easeOut'
+				
+				///////////////////////////////////////////
+				// Update Images - Change Character
+				///////////////////////////////////////////
+				pImgArray.forEach((pElement, index) => {
+					image_path = "images/Tekken_7_Characters_PNGs/".concat(pChar[index]).concat(".png");
+					if (active[index] && CharImg[index] != image_path) {
+						//Find character image
+						$(pElement.pVal.selector).removeClass('imgTransition');
+						CharImg[index] = image_path;
+						
+						animating = true;
+						$(pElement.pVal.selector).tween({
+							opacity: char_img.pDisappear.opacity,
+								onStop: function () {
+									$(pElement.pVal.selector).html('<img src="' + CharImg[index] + '" style="max-height: 100%;max-width: 100%;object-fit: fill;"></img>');
+								}
+						});
+						
+						$(pElement.pVal.selector).tween({
+							opacity: char_img.pAppear.opacity,
+							onStop: function (){animating = false;}
+						});
 					}
 				});
-					
+	
+				///////////////////////////////////////////
+				// Update Names
+				///////////////////////////////////////////
+				pNameArray.forEach((pElement, index) => {
+					if ($(pElement.pVal.selector).html() != pName[index] && active[index]) {
+						animating = true;
+						//Disappear
+						$(pElement.pVal.selector).tween({
+							opacity : {
+								start: 100,
+								stop: 0,
+								time: 0,
+								duration: 0.5,
+								effect: 'easeIn'
+							},
+									
+							onStop: function(){
+								$(pElement.pVal.selector).html(pName[index]);
+								$(pElement.pVal.selector).css({'left': pstop[index] + 'px'});
+								$(pElement.pVal.selector).each(function(i, pVal){
+									$(pVal).css('font-size', '30px');
+									while(pVal.scrollWidth > pVal.offsetWidth || pVal.scrollHeight > pVal.offsetHeight){
+										var newFontSize = (parseFloat($(pVal).css('font-size').slice(0,-2)) * .95) + 'px';
+										$(pVal).css('font-size', newFontSize);
+									}
+								});
+							}
+						});
+						
+						//Appear
+						$(pElement.pVal.selector).tween({
+							opacity : {
+								start: 0,
+								stop: 100,
+								time: 1,
+								duration: 0.5,
+								effect: 'easeOut'
+							},
+							onStop: function (){
+								animating = false;
+							}
+						});
+					};
+				});
+				
+				//Update dead players
+				for (i = 0; i < num_players; i++) {
+					(dead[i] == 1) ? $("#pImg".concat((i+1).toString())).addClass('death') : $("#pImg".concat((i+1).toString())).removeClass('death');
+					(dead[i] == 1) ? $("#pName".concat((i+1).toString())).css({'color':'red'}) : $("#pName".concat((i+1).toString())).css({'color':'white'});
+				}
+				
 				$.play();
 				
 				doUpdate = false;
@@ -194,18 +328,38 @@
 	</script>
 </head>
 <body onLoad="init()">
+	<span id="lBox" class="gradBox"></span>
+	<span id="rBox" class="gradBox"></span>
 	<div id="board">
-		<span id="pImg1" class="pImg"></span>
-		<span id="pImg2" class="pImg"></span>
-		<span id="pImg3" class="pImg"></span>
-		<span id="pImg4" class="pImg"></span>
-		<span id="pImg5" class="pImg"></span>
+		<div id="pImg1" class="pImg"></div>
+		<span id="pName1" class="tText">Player 1</span>
+		<div id="pImg2" class="pImg"></div>
+		<span id="pName2" class="tText">Player 2</span>
+		<div id="pImg3" class="pImg"></div>
+		<span id="pName3" class="tText">Player 3</span>
+		<div id="pImg4" class="pImg"></div>
+		<span id="pName4" class="tText">Player 4</span>
+		<div id="pImg5" class="pImg"></div>
+		<span id="pName5" class="tText">Player 5</span>
+		<div id="pImg6" class="pImg"></div>
+		<span id="pName6" class="tText">Player 6</span>
+		<div id="pImg7" class="pImg"></div>
+		<span id="pName7" class="tText">Player 7</span>
+		<div id="pImg8" class="pImg"></div>
+		<span id="pName8" class="tText">Player 8</span>
+		<div id="pImg9" class="pImg"></div>
+		<span id="pName9" class="tText">Player 9</span>
+		<div id="pImg10" class="pImg"></div>
+		<span id="pName10" class="tText">Player 10</span>
+		<div id="pImg11" class="pImg"></div>
+		<span id="pName11" class="tText">Player 11</span>
+		<div id="pImg12" class="pImg"></div>
+		<span id="pName12" class="tText">Player 12</span>
+		<div id="pImg13" class="pImg"></div>
+		<span id="pName13" class="tText">Player 13</span>
+		<div id="pImg14" class="pImg"></div>
+		<span id="pName14" class="tText">Player 14</span>
 		<div id="pScore1">99</div>
-		<span id="pImg6" class="pImg"></span>
-		<span id="pImg7" class="pImg"></span>
-		<span id="pImg8" class="pImg"></span>
-		<span id="pImg9" class="pImg"></span>
-		<span id="pImg10" class="pImg"></span>
 		<div id="pScore2">99</div>
 		<div id="mText3">Test</div>
 	</div>

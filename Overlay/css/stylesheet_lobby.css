@@ -17,83 +17,42 @@ body {
 
 .pImg{
 	position:absolute;
-	width:150px;
-	height:90px;
 	opacity:0;
 	text-align:center;
 	vertical-align: middle;
 	background-repeat:no-repeat;
 	background-size:cover;
 	background-position: center bottom;
-	-webkit-transition: all 1s ease-in-out;
+	-webkit-transition: filter 1s ease-in-out;
 }
 
 .death {
 	filter: grayscale(1);
 }
 
-#pImg1 {
-	left:-200px;
-	background-image:url('../images/team_renders/Coxo.png');
-}
-
-#pImg2 {
-	left:-200px;
-	background-image:url('../images/team_renders/Jondesu.png');
-}
-
-#pImg3 {
-	left:-200px;
-	background-image:url('../images/team_renders/Mike.png');
-}
-
-#pImg4 {
-	left:-200px;
-	background-image:url('../images/team_renders/Flake.png');
-}
-
-#pImg5 {
-	left:-200px;
-	background-image:url('../images/team_renders/Murteira.png');
-}
-
-#pImg6 {
-	left:2120px;
-	background-image:url('../images/team_renders/JFSL.png');
-}
-
-#pImg7 {
-	left:2120px;
-	background-image:url('../images/team_renders/Wolf.png');
-}
-
-#pImg8 {
-	left:2120px;
-	background-image:url('../images/team_renders/Seifer.png');
-}
-
-#pImg9 {
-	left:2120px;
-	background-image:url('../images/team_renders/Lomb.png');
-}
-
-#pImg10 {
-	left:2120px;
-	background-image:url('../images/team_renders/BadCat.png');
-}
-
-#pName2 {
+.tText {
 	position:absolute;
-	left:1169px;
-	width:330px;
-	height:41px;
-	font-size:30px;
+	font-size:40px;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
-	vertical-align: middle;
+	vertical-align: bottom;
+	overflow:visible;
+		font-weight:600;
+		font-style:italic;
 	text-shadow: 
-	    2px 2px #000,
-		2px 2px #000;
+	    3px 3px #000,
+		3px 3px #000;
+	transition: color 2s ease-out;
 }
+
+.gradBox {
+	position:absolute;
+	opacity:0;
+	top:0px;
+	width: 790px;
+	background: linear-gradient(to bottom, rgba(0, 10, 10, 0) 20%, rgba(0, 10, 10, 0.7) 80% );
+}
+
 #pScore1 {
 	position:absolute;
 	left:795px;
@@ -121,28 +80,6 @@ body {
     2px -2px 0 #000,
     -2px 2px 0 #000,
     2px 2px 0 #000; 
-}
-
-#pFlag1 {
-	position:absolute;
-	height: 60px;
-	left:254px;
-	top: -6px;
-	text-align:center;
-	opacity: 0;
-	-webkit-mask-image: url("../images/flag_mask/flag_mask_1.png");
-	-webkit-mask-size: 100%;
-}
-
-#pFlag2 {
-	position:absolute;
-	height: 60px;
-	left:1511px;
-	top:-6px;
-	text-align:center;
-	opacity: 0;
-	-webkit-mask-image: url("../images/flag_mask/flag_mask_2.png");
-	-webkit-mask-size: 100%;
 }
 
 #mText3 {
